@@ -21,7 +21,8 @@ Rails.application.routes.draw do
 
  resources :events
 
- devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", confirmations: 'confirmations'}
+ devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks", confirmations: 'confirmations',
+  registrations: 'registrations'}
 
   devise_scope :user do
     delete 'users/sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_sessions
@@ -30,5 +31,8 @@ Rails.application.routes.draw do
 
     get 'register' => 'devise/registrations#new', as: 'register'
 
+    get 'user/city' => 'registrations#city', as: 'add_city'
+
+    patch 'user/city' => 'registrations#update_city'
   end
 end
