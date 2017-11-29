@@ -1,0 +1,158 @@
+<div class='user-form'>
+city: <%= @city %>
+<h3>Create new event</h3>
+
+<%= form_for @event do |f| %>
+
+<% if @event.errors.any? %>
+ <div id="error_explanation">
+    <div class="alert alert-danger">
+      <ul>
+        <% @event.errors.each do |field, msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+ <div class="image-error">
+  </div>
+
+
+  <div class="cover-image-container">
+      <span id="image"></span>
+      <span class="fa fa-photo"></span>
+      <div class="cover-image-text"> Add a cover image</div>
+  </div>
+
+  <div class="form-field">
+    <%= f.text_field :title, :placeholder => 'Title' %>
+  </div>
+
+  <div class="form-field">
+  <%= f.text_area :description, :placeholder => 'Description' %> 
+  </div>
+
+  <%= f.file_field :cover_image, id: 'upload'%>
+
+  <div class="form-field">
+    <%= f.text_field :address, :placeholder => 'Address or Place', id: 'search-field' %>
+  </div>
+
+  <div class="form-field">
+  <%= f.text_field :url, :placeholder => 'Event website (optional)' %>
+  </div>
+
+  <div class="form-field">
+  <%= f.label :Category %><br>
+  <%= f.select :category, [['Sports','sports'],['Entertainment','entertainment'],['Music','music'], ["Food + Drinks", "food + drinks"]] %>
+  <div class="bg-image">
+  </div>
+  </div>
+
+<div class="form-field">
+  <%= f.label :Recurring %><br>
+  <%= f.select_recurring :recurring %>
+</div>
+
+<div class="date-container">
+</div>
+
+<div class="add-date">
+  + Add start date
+</div>
+
+<div class="remove-date">
+   Remove start date
+</div>
+
+<div class="enddate-container">
+</div>
+
+<div class="add-enddate">
+  + Add end date
+</div>
+
+<div class="remove-enddate">
+   Remove end date
+</div>
+
+<div class="form-field">
+<%= f.label :Start_time %><br>
+<%= f.select :hour, ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]%> :
+
+  <%= f.select :minute, ["00", "15", "30", "45"]%> 
+
+  <%= f.select :meridiem, ["AM", "PM"]%> <br>
+</div>
+
+<div class="endtime-container">
+</div>
+
+<div class="add-endtime">
++ Add end time
+</div>
+
+<div class="remove-endtime">
+Remove end time
+</div>
+
+  <%= f.submit "Create Event", id: 'submit' %>
+
+<script>
+
+ $('.add-date').click(function(){
+    $('.date-container').append("<%= j render partial: 'events/date', locals: {f: f} %>");
+    $('.date').show("fast");
+    $('.add-date').hide();
+    $('.remove-date').show();
+  });
+
+  $('.remove-date').click(function(){
+    $('.date').remove();
+    $('.add-date').show();
+    $('.remove-date').hide();
+  });
+
+
+ $('.add-endtime').click(function(){
+    $('.endtime-container').append("<%= j render partial: 'events/endtime', locals: {f: f} %>");
+    $('.endtime').show("fast");
+    $('.add-endtime').hide();
+    $('.remove-endtime').show();
+  });
+
+  $('.remove-endtime').click(function(){
+    $('.endtime').remove();
+    $('.add-endtime').show();
+    $('.remove-endtime').hide();
+  });
+
+  $('.add-enddate').click(function(){
+    $('.enddate-container').append("<%= j render partial: 'events/enddate', locals: {f: f} %>");
+    $('.enddate').show("fast");
+    $('.add-enddate').hide();
+    $('.remove-enddate').show();
+  });
+
+  $('.remove-enddate').click(function(){
+    $('.enddate').remove();
+    $('.add-enddate').show();
+    $('.remove-enddate').hide();
+  });
+</script>
+
+<% end %>
+</div> 
+
+
+
+<script type="text/javascript">
+    function initMap() {
+        var input = document.getElementById("search-field");
+        var autoComplete = new google.maps.places.Autocomplete(input);
+    }
+</script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr49omMbQnK7OiEFsik8y2PotB4eQPKso&libraries=places&callback=initMap"></script>

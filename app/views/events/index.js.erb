@@ -1,0 +1,8 @@
+$('.events').append('<%= j render @events %>');
+<% if @events.next_page %>
+   $('.pagination').replaceWith('<%= j will_paginate @events %>');
+   $('.pagination').hide();
+<% else %>
+	$('.pagination').remove();
+	$('#load-more-posts').remove();
+<% end %>

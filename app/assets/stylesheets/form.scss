@@ -1,0 +1,175 @@
+.user-form{
+	width: 500px;
+	padding: 20px;
+	margin: auto;
+	margin-top: 20px;
+	position:relative;
+	background-color: white;	
+	border: 1px solid #dddddd;
+	input[type=email], input[type=password], input[type=text]{
+		width: 100%;
+		height: 34px;
+		padding-left: 5px;
+		border: solid 1px #d3d3d3;
+		border-radius: 0;
+		outline: none;
+	}
+
+	h3{
+		font-weight: bold;
+		margin-bottom: 1rem;
+		color: #656565;
+		text-align:center;
+	}
+
+	input[type="submit"]{
+		width: 100%;
+		height: 34px;
+		background-color: #90bbd1;
+		color: white;
+		border:none;
+	}
+
+	input[type="submit"]:hover{
+		background-color: #7dabc3;
+		cursor: pointer;
+	}
+
+	input[type="submit"]:disabled{
+		background-color: #90bbd1;
+		cursor: not-allowed;
+	}
+
+	.links{
+		a, a:hover{
+			color: #90bbd1;
+			text-decoration: none;
+		}
+		text-align:center;
+		margin-top: 10px;
+	}
+
+	.form-check-input{
+		margin-left: 0px;
+	}
+
+	.form-check-label{
+		margin-left: 3px;
+	}
+
+	.remember-me{
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.field_with_errors {
+  		input, textarea {
+  			border: solid 1px #d1909b;
+  		}
+}
+
+.field{
+	margin-top: -1px;
+	outline: none;
+}
+
+#error_explanation {
+  color: #f00;
+  width: 400px;
+  margin-top: 1rem;
+  margin: auto;
+  ul{
+  	margin-bottom: 0;
+  }
+}
+}
+
+.facebook-login{
+	width:100%;
+	height: 34px;
+	background-color:#3b5998;
+	text-align: center;
+	line-height:34px;
+		a{
+			color: white;
+			display: block;
+			width:100%;
+			height:100%;
+			text-decoration:none;
+			background-image: url('https://cdn.worldvectorlogo.com/logos/facebook-4.svg');
+			background-repeat: no-repeat;
+			background-position: 3px center;
+			background-size: 28px 28px;
+		}
+}
+
+.google-login{
+	width:100%;
+	height: 34px;
+	background-color:#d34836;
+	text-align: center;
+	line-height:34px;
+	margin-top: 10px;
+		a{
+			color: white;
+			display: block;
+			width:100%;
+			height:100%;
+			text-decoration:none;
+			background-image: url('https://assets.materialup.com/uploads/b8f2348a-dfa8-4c0a-b696-112e1c293b95/googleplus-logos-02.png');
+			background-repeat: no-repeat;
+			background-position: 3px center;
+			background-size: 28px 28px;
+		}
+}
+
+.facebook-login:hover{
+	background-color: #355088;
+}
+
+.google-login:hover{
+	background-color: #bd4030
+}
+
+.bg-img{
+  	width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+    min-height: 800px;
+    min-width: 1600px;
+}
+
+.discover{
+	margin-top:20px;
+	font-size: 35px;
+	font-weight:bold;
+	text-align: center;
+	color:white;
+}
+
+.divider {
+   width: 100%; 
+   text-align: center; 
+   border-bottom: 1px solid #bbbbbb; 
+   line-height: 0.1em;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   color: grey; 
+} 
+
+.divider span { 
+    background:#fff; 
+    padding:0 10px; 
+}
+
+.sign-up-links{
+	display:inline;
+	text-align:center;
+	margin-top: 10px;
+
+	a, a:hover{
+		color: #90bbd1;
+	}
+}

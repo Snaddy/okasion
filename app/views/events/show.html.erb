@@ -1,0 +1,119 @@
+<% flash.each do |type, message| %>
+<div class="messages">
+    <div class="alert <%= bootstrap_class_for(type)%>">
+    	<%= message %>
+    </div>
+</div>
+<% end %>
+
+<div class="show-container">
+city: <%= @city %>
+<div class="show-item">
+
+	<div class="cover-image">
+		<%= image_tag @event.cover_image %>
+		<% if current_user == @event.user %>
+
+ 		<div class="controls">
+ 		
+ 		<%= link_to edit_event_path(@event.id), class: 'btn btn-primary' do%>
+ 		Edit <span class="fa fa-pencil"></span>
+ 		<% end %>
+
+	 	<%= link_to destroy_event_path(@event), method: :delete, class: 'btn btn-danger', data:{:confirm => 'Are you sure you want to delete this event?'} do %>
+  		Delete <span class="fa fa-trash-o"></span>
+  		<% end %>
+  		</div>
+	<% end %>
+	</div>
+	<div></div>
+	<div class="show-title"><%= @event.title %></div>
+
+	<hr>
+
+	  <strong>Location:</strong>
+	  <%= @event.address %>
+	  <div class="show-map">Show on map</div>
+
+	<div class="map"><%= image_tag "http://maps.google.com/maps/api/staticmap?size=500x250&sensor=false&zoom=16&markers=#{@event.latitude}%2C#{@event.longitude}" %></div>
+
+	<div class="time">
+
+		<% if @event.endtime.present? %>
+
+		<strong>Time: </strong><%= @event.time.strftime("%l:%M%P")%> - <%= @event.endtime.strftime("%l:%M%P")%>
+
+		<% else %>
+
+		<strong>Start time: </strong><%= @event.time.strftime("%l:%M%P")%>
+
+		<% end %>
+
+		<div class="recurring">
+			<% if @event.recurring.empty? %>
+				<strong>Date: </strong><%= @event.date.strftime("%B, %-d, %Y") %>
+
+				<% if @event.enddate.present? %>
+					- <%= @event.enddate.strftime("%B, %-d, %Y") %>
+				<% end %>
+
+			<% else %>
+				<strong>Days: </strong><%= IceCube::Rule.from_hash(@event.recurring) %>
+
+				<div>
+				<% if @event.date.present? %>
+					<strong>Starts: </strong><%= @event.date.strftime("%B, %-d, %Y") %>
+				<% end %>
+				</div>
+
+				<div>
+				<% if @event.enddate.present? %>
+					<strong>Ends: </strong><%= @event.enddate.strftime("%B, %-d, %Y") %>
+				<% end %>
+				</div>
+			<% end %>
+
+		</div>
+
+	</div>
+
+	<% if @event.url.present? %>
+
+		<strong>Website: </strong><%= link_to @event.url, @event.url, target: '_blank'%>
+
+	<% end %>
+
+	<hr>
+
+	<strong>Description:</strong><br>
+	<%= @event.description %>
+</div>
+
+<div class="nearby-events">
+<div class="nearby-title">Nearby events</div>
+	<% for event in @event.nearbys(10).limit(5) %>
+		<%= div_for event, :class => "nearby-event-items" do %>
+			<%= link_to event_path(event.id) do %>
+				<%= image_tag event.cover_image.to_s %>
+				<div class="title"><%= event.title %></div>
+			<% end %>
+		<% end %>
+	<% end %> 
+</div>
+
+</div>
+
+<script type="text/javascript">
+	
+	$('.show-map').click(function(){
+		$('.map').toggle("fast");
+		if($(this).html() == "Show on map"){
+			$(this).html("Hide map");
+			$(this).css("color", "#d1909b");
+		} else {
+			$(this).html("Show on map");
+			$(this).css("color", "#90bbd1");
+		}
+	});
+
+</script>

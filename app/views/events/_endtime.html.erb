@@ -1,0 +1,22 @@
+<div class="endtime">
+  <%= f.label :End_time %><br>
+
+  <% if @event.endtime? %>
+
+  <%= f.select :endhour, [["1", "01"], ["2", "02"], ["3","03"], ["4", "04"], ["5", "05"], ["6", "06"], ["7", "07"], ["8", "08"], ["9", "09"], "10", "11", "12"], selected: @event.endtime.strftime("%I")%> :
+
+  <%= f.select :endminute, ["00", "15", "30", "45"], selected: @event.endtime.strftime("%M") || "00" %> 
+
+  <%= f.select :endmeridiem, ["AM", "PM"], selected: @event.endtime.strftime("%p") || "AM" %> <br>
+
+  <% else %>
+
+    <%= f.select :endhour, [["1", "01"], ["2", "02"], ["3","03"], ["4", "04"], ["5", "05"], ["6", "06"], ["7", "07"], ["8", "08"], ["9", "09"], "10", "11", "12"]%> :
+
+  <%= f.select :endminute, ["00", "15", "30", "45"] %> 
+
+  <%= f.select :endmeridiem, ["AM", "PM"]%> <br>
+
+<% end %>
+
+</div>

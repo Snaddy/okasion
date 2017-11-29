@@ -1,0 +1,52 @@
+.feed{
+	width:500px;
+	margin:auto;
+
+	.btn {
+		width: 100%;
+  		display: none;
+  		background-color: #90bbd1;
+  		border: none;
+	}
+
+	.btn:hover {
+  		background-color: #7dabc3;
+	}
+
+}
+
+.event-item{
+	height: 250px;
+	margin-bottom: 15px;
+	a, a:hover{
+		color: white;
+	}
+}
+
+.title{
+	position:relative;
+	width: 100%;
+	height:auto;
+	background-color: rgba(0, 0, 0, .625);
+	bottom: 30px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 20px;
+	word-wrap: break-word;
+}
+
+.no-events{
+	text-align:center;
+	color: #212529;
+}
+
+.gif{
+	width: 700px;
+	margin:auto;
+	text-align: center;
+	color: #b8b8b8;
+	img{
+		width: 700px;
+		height: 700px;
+	}
+}

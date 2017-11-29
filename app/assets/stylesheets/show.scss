@@ -1,0 +1,99 @@
+.show-container {
+	position: relative;
+	width: 540px;
+	border: solid 1px #d3d3d3;
+	margin: 0px auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.show-item{
+	width: 500px;
+	margin:auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	word-wrap: break-word;
+
+	.cover-image{
+		height: 250px;
+	}
+
+	.btn-primary{
+	width: 100px;
+		a{
+			color:white;
+		}
+	}
+	.btn-danger{
+		width: 100px;
+		a{
+			color:white;
+		}
+	}
+
+	.controls{
+		width: 205px;
+		position: relative;
+		bottom: 48px;
+		left: 290px;
+		margin-top:5px;
+		margin-bottom: 5px;
+	}
+
+	.show-title{
+		margin-top: 0.5rem;
+		font-size: 25px;
+		word-wrap: break-word;
+	}
+
+	.map {
+		display:none;
+		margin: 5px;
+	}
+
+	.show-map{
+		float: right;
+		color: #90bbd1;
+	}
+
+	.show-map:hover{
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
+	hr{
+		margin-top: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+}
+
+.nearby-events{
+	position: absolute;
+	border: 1px solid #d3d3d3;
+	width: 310px;
+	right: -320px;
+	top: 0px;
+}
+
+.nearby-title{
+	margin-left: 5px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.nearby-event-items{
+	margin: 5px;
+	width: 300px;
+	height: 150px;
+
+	.title{
+		width: 100%;
+		font-size: 14px;
+		color: white;
+	}
+
+	img{
+		max-width: 300px;
+		max-height: 150px;
+	}
+}

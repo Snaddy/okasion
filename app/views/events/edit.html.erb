@@ -1,0 +1,210 @@
+<div class='user-form'>
+<h3>Edit event</h3>
+
+<%= form_for @event do |f| %>
+
+<% if @event.errors.any? %>
+ <div id="error_explanation">
+    <div class="alert alert-danger">
+      <ul>
+        <% @event.errors.each do |field, msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+ <div class="image-error">
+  </div>
+
+<% if @event.cover_image.present? %>
+
+ <div class="cover-image-container">
+      <span id="image">
+        <img src="<%= @event.cover_image.to_s %>">
+      </span>
+  </div>
+
+<% else %>
+
+ <div class="cover-image-container">
+      <span id="image"></span>
+      <span class="fa fa-photo"></span>
+      <div class="cover-image-text"> Add a cover image</div>
+  </div>
+
+<% end %>
+
+
+  <div class="form-field">
+    <%= f.text_field :title, :placeholder => 'Title' %>
+  </div>
+
+  <div class="form-field">
+  <%= f.text_area :description, :placeholder => 'Description' %> 
+  </div>
+
+  <%= f.file_field :cover_image, id: 'upload'%>
+
+  <div class="form-field">
+    <%= f.text_field :address, :placeholder => 'Address or Place', id: 'search-field' %>
+  </div>
+
+  <div class="form-field">
+  <%= f.text_field :url, :placeholder => 'Event website (optional)' %>
+  </div>
+
+  <div class="form-field">
+  <%= f.label :Category %><br>
+  <%= f.select :category, [['Sports','sports'],['Entertainment','entertainment'],['Music','music']] %>
+  <div class="bg-image">
+  </div>
+  </div>
+
+<div class="form-field">
+  <%= f.label :Recurring %><br>
+  <%= f.select_recurring :recurring, nil, :allow_blank => true %>
+</div>
+
+<% if @event.date.present? %>
+
+  <%= render partial: 'events/date', locals: {f: f} %>
+
+<% end %>
+
+<div class="date-container">
+</div>
+
+<div class="add-date">
+  + Add start date
+</div>
+
+<div class="remove-date">
+   Remove start date
+</div>
+
+
+<% if @event.enddate.present? %>
+
+  <%= render partial: 'events/enddate', locals: {f: f} %>
+
+<% end %>
+
+<div class="enddate-container">
+</div>
+
+<div class="add-enddate">
+  + Add end date
+</div>
+
+<div class="remove-enddate">
+   Remove end date
+</div>
+
+<div class="form-field">
+<%= f.label :Start_time %><br>
+<%= f.select :hour, [["1", "01"], ["2", "02"], ["3","03"], ["4", "04"], ["5", "05"], ["6", "06"], ["7", "07"], ["8", "08"], ["9", "09"], "10", "11", "12"], selected: @event.time.strftime('%I')%> :
+
+  <%= f.select :minute, ["00", "15", "30", "45"], selected: @event.time.strftime("%M")%> 
+
+  <%= f.select :meridiem, ["AM", "PM"], selected: @event.time.strftime("%p")%> <br>
+</div>
+
+<% if @event.endtime.present? %>
+
+  <%= render partial: 'events/endtime', locals: {f: f} %>
+
+<% end %>
+
+<div class="endtime-container">
+</div>
+
+<div class="add-endtime">
++ Add end time
+</div>
+
+<div class="remove-endtime">
+Remove end time
+</div>
+
+  <%= f.submit "Save Changes", id: 'submit' %>
+
+<script>
+
+if($('.date').length != 0){
+    $('.add-date').hide();
+    $('.remove-date').show();
+} else {
+    $('.add-date').show();
+    $('.remove-date').hide();
+}
+
+if($('.endtime').length != 0){
+    $('.add-endtime').hide();
+    $('.remove-endtime').show();
+} else {
+    $('.add-endtime').show();
+    $('.remove-endtime').hide();
+}
+
+if($('.enddate').length != 0){
+    $('.add-enddate').hide();
+    $('.remove-enddate').show();
+} else {
+    $('.add-enddate').show();
+    $('.remove-enddate').hide();
+}
+
+ $('.add-date').click(function(){
+    $('.date-container').append("<%= j render partial: 'events/date', locals: {f: f} %>");
+    $('.date').show("fast");
+    $('.add-date').hide();
+    $('.remove-date').show();
+  });
+
+  $('.remove-date').click(function(){
+    $('.date').remove();
+    $('.add-date').show();
+    $('.remove-date').hide();
+  });
+
+ $('.add-endtime').click(function(){
+    $('.endtime-container').append("<%= j render partial: 'events/endtime', locals: {f: f} %>");
+    $('.endtime').show("fast");
+    $('.add-endtime').hide();
+    $('.remove-endtime').show();
+  });
+
+  $('.remove-endtime').click(function(){
+    $('.endtime').remove();
+    $('.add-endtime').show();
+    $('.remove-endtime').hide();
+  });
+
+  $('.add-enddate').click(function(){
+    $('.enddate-container').append("<%= j render partial: 'events/enddate', locals: {f: f} %>");
+    $('.enddate').show("fast");
+    $('.add-enddate').hide();
+    $('.remove-enddate').show();
+  });
+
+  $('.remove-enddate').click(function(){
+    $('.enddate').remove();
+    $('.add-enddate').show();
+    $('.remove-enddate').hide();
+  });
+</script>
+
+<% end %>
+</div>
+
+
+<script type="text/javascript">
+    function initMap() {
+        var input = document.getElementById("search-field");
+        var autoComplete = new google.maps.places.Autocomplete(input);
+    }
+</script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr49omMbQnK7OiEFsik8y2PotB4eQPKso&libraries=places&callback=initMap"></script>

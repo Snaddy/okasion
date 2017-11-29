@@ -1,0 +1,17 @@
+<%= div_for event, :class => "event-item" do %>
+	<%= link_to event_path(event.id) do %>
+		<%= image_tag event.cover_image.to_s %>
+		<div class="title"><%= event.title %></div>
+	<% end %>
+<% end %> 
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+	$('.title').each(function(){
+		var height = $(this).height();
+		$(this).css("bottom", height + "px");
+	});
+});
+
+</script>

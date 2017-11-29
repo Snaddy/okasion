@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Okasion - Discover what's happening near you</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-light bg-faded">
+
+	<div class="container">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      	
+        <% if !user_signed_in? %>
+          <nav class="navbar navbar-light bg-faded mx-auto">
+        <div class="navbar-brand">
+          <%= image_tag('logo3.png', height: '38px') %>
+        </div>
+        </nav>
+
+        <% else %>
+
+        <div id="search-form">
+          <%= form_tag events_path, :method => :get do %>
+            <%= text_field_tag :search, params[:search], class: 'search-field', placeholder: 'Search' %>
+            <%= button_tag(type: "submit", class: "btn btn-default search-btn") do %>
+                <i class="fa fa-search"></i>
+            <% end %> 
+          <% end %>
+        </div>
+
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="fa fa-bars"></span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <%= link_to('Profile', profile_path, class: 'dropdown-item') %>
+
+            <%= link_to('Create event', new_event_path, class: 'dropdown-item') %>
+
+            <%= link_to('Home', root_path, class: 'dropdown-item') %>
+
+                <div class="dropdown-divider"></div>
+
+                <%= link_to('Privacy Policy', privacy_path, class: 'dropdown-item') %>
+
+                <%= link_to('Terms of Service', terms_path, class: 'dropdown-item') %>
+          
+                <div class="dropdown-divider"></div>
+            <%= button_to('Logout', destroy_user_session_path,method: :delete, class: 'dropdown-item') %>
+          </div>
+        </div>
+        
+        <% end %>
+
+	</div>
+</nav>
+<% if !user_signed_in? %>
+<div class="discover">Discover what's happening near you.</div>
+  <%= image_tag('bg2.jpg', class:'bg-img') %>
+<% else %>
+
+<script type="text/javascript">
+    function initMap() {
+        var input = document.getElementById("search");
+        var autoComplete = new google.maps.places.Autocomplete(input);
+    }
+</script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr49omMbQnK7OiEFsik8y2PotB4eQPKso&libraries=places&callback=initMap"></script>
+
+<% end %> 
+<%= yield %>
+
+<%= link_to '#', class: "btn btn-primary back-to-top-button" do %>
+  <span class="fa fa-arrow-up">
+<% end %>
+
+<div class="scroll-top-val"></div>
+</body>
+</html>
