@@ -6,11 +6,11 @@ require 'will_paginate/array'
 
   def index
     if params[:search].present?
-      @events = Event.near(params[:search], 100).paginate(page: params[:page], per_page: 10)
-      # @events_near = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
-      #   Date.today, Date.today, Date.today, Date.today).near(params[:search], 100)
-      # @events = @events_near.flat_map{ |e| e.today(params.fetch(:date, Time.now).to_date) }
-      # @events = @events.paginate(page: params[:page], per_page: 10)
+      @events = Event.near(params[:search], 100)
+      @events_near = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+        Date.today, Date.today, Date.today, Date.today).near(params[:search], 100)
+      @events = @events_near.flat_map{ |e| e.today(params.fetch(:date, Time.now).to_date) }
+      @events = @events.paginate(page: params[:page], per_page: 10)
     else
       @city = request.location.city
       @events_near = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
