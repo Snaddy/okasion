@@ -4,19 +4,29 @@
 	<strong>Name: </strong><%= @name %><br>
 	<strong>City: </strong><%= @city %>
 
+	<% if !@user.provider? %>
+		<%= link_to edit_password_path, class: 'btn btn-primary' do%>
+	 		Edit Password
+	 	<% end %>
+	<% end %>
+
 	<%= link_to edit_user_path, class: 'btn btn-primary' do%>
- 		Edit Profile <span class="fa fa-pencil"></span>
+ 		Edit Profile
  	<% end %>
 </div>
 
 <div class="feed">
-
-
 <hr>
 
 <div class="events">
 	<%= render @events %>
 </div>
+
+<% if @events.count == 0 %>
+
+	<div class='no-events'>You haven't posted any events yet</div>
+
+<% end %>
 
 <div class="pagination">
 	<%= will_paginate @events %>

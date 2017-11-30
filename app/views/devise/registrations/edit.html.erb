@@ -4,7 +4,7 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
-<% if resource.errors.any? %>
+<% if resource.errors.present? %>
  <div id="error_explanation">
         <div class="alert alert-danger">
         <ul>
@@ -19,7 +19,7 @@
   </div>
 <% end %>
   
-<% if !resource.provider.present? %>
+<% if !resource.provider? %>
 
   <div class="edit-field">
     <%= f.label :email %> 

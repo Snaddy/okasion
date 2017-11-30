@@ -1,19 +1,16 @@
 <div class="index">
 	<div class="feed">
-	<div class="events">
-		<%= render @events %>
+		<div class="events">
+			<%= render @events %>
+		</div>
+		<div class="pagination">
+			<%= will_paginate @events %>
+		</div>
+		<% if @events.next_page %>
+			<div id="load-more-posts" class="btn btn-primary"> Load more posts</div>
+		<% end %>
 	</div>
-	<div class="pagination">
-		<%= will_paginate @events %>
-	</div>
-
-	<% if @events.next_page %>
-		<div id="load-more-posts" class="btn btn-primary"> Load more posts</div>
-	<% end %>
 </div>
-</div>
-
-
 
 <script type="text/javascript">
 	

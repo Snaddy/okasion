@@ -35,6 +35,10 @@ Rails.application.routes.draw do
 
     get 'user/city' => 'registrations#city', as: 'add_city'
 
+    get 'profile/password/edit' => 'registrations#edit_password', as: 'edit_password'    
+  
+    patch 'user/password' => 'registrations#update_password' 
+
     patch 'user/city' => 'registrations#update_city'
   end
 end

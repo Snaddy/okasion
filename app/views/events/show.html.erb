@@ -38,7 +38,7 @@
 
 	<div class="time">
 
-		<% if @event.endtime.present? %>
+		<% if @event.endtime? %>
 
 		<strong>Time: </strong><%= @event.time.strftime("%l:%M%P")%> - <%= @event.endtime.strftime("%l:%M%P")%>
 
@@ -52,7 +52,7 @@
 			<% if @event.recurring.empty? %>
 				<strong>Date: </strong><%= @event.date.strftime("%B, %-d, %Y") %>
 
-				<% if @event.enddate.present? %>
+				<% if @event.enddate? %>
 					- <%= @event.enddate.strftime("%B, %-d, %Y") %>
 				<% end %>
 
@@ -60,13 +60,13 @@
 				<strong>Days: </strong><%= IceCube::Rule.from_hash(@event.recurring) %>
 
 				<div>
-				<% if @event.date.present? %>
+				<% if @event.date? %>
 					<strong>Starts: </strong><%= @event.date.strftime("%B, %-d, %Y") %>
 				<% end %>
 				</div>
 
 				<div>
-				<% if @event.enddate.present? %>
+				<% if @event.enddate? %>
 					<strong>Ends: </strong><%= @event.enddate.strftime("%B, %-d, %Y") %>
 				<% end %>
 				</div>
@@ -76,7 +76,7 @@
 
 	</div>
 
-	<% if @event.url.present? %>
+	<% if @event.url? %>
 
 		<strong>Website: </strong><%= link_to @event.url, @event.url, target: '_blank'%>
 

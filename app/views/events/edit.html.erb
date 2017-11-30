@@ -3,7 +3,7 @@
 
 <%= form_for @event do |f| %>
 
-<% if @event.errors.any? %>
+<% if @event.errors.present? %>
  <div id="error_explanation">
     <div class="alert alert-danger">
       <ul>
@@ -18,7 +18,7 @@
  <div class="image-error">
   </div>
 
-<% if @event.cover_image.present? %>
+<% if @event.cover_image? %>
 
  <div class="cover-image-container">
       <span id="image">
@@ -65,7 +65,7 @@
   <%= f.select_recurring :recurring, nil, :allow_blank => true %>
 </div>
 
-<% if @event.date.present? %>
+<% if @event.date? %>
 
   <%= render partial: 'events/date', locals: {f: f} %>
 
@@ -83,7 +83,7 @@
 </div>
 
 
-<% if @event.enddate.present? %>
+<% if @event.enddate? %>
 
   <%= render partial: 'events/enddate', locals: {f: f} %>
 
@@ -109,7 +109,7 @@
   <%= f.select :meridiem, ["AM", "PM"], selected: @event.time.strftime("%p")%> <br>
 </div>
 
-<% if @event.endtime.present? %>
+<% if @event.endtime? %>
 
   <%= render partial: 'events/endtime', locals: {f: f} %>
 
