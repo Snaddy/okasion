@@ -1,12 +1,28 @@
+<div class="user-form">
+
 <%= form_for @user, url: add_city_path do |f| %>
 
-<div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city, autofocus: true %>
-</div>
+<h3>What city do you live in?</h3>
 
-<div class="actions">
-    <%= f.submit "Update" %>
+<div class="info">You don't have to enter a city, but it helps us find nearby events without you having to search. You can change it anytime.<br><div class="skip-link"><%= link_to "Thanks, but I'll skip this for now", root_path %></div>
+
+<br><div id="field">
+    <%= f.text_field :city, autofocus: true, placeholder: 'Search for a city', id: 'search-field' %>
+</div><br>
+
+<div class="submit">
+    <%= f.submit "Save city", id: 'submit-city' %>
 </div>
 
 <% end %>
+
+</div>
+
+<script type="text/javascript">
+    function initMap() {
+        var input = document.getElementById("search-field");
+        var autoComplete = new google.maps.places.Autocomplete(input);
+    }
+</script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr49omMbQnK7OiEFsik8y2PotB4eQPKso&libraries=places&callback=initMap"></script>
