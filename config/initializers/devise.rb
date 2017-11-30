@@ -239,7 +239,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
     config.omniauth :facebook, ENV['APP_ID'], ENV['APP_SECRET'], 
-    scope: 'email', :client_options => {
+    scope: 'email', display: 'popup',:client_options => {
       :site => 'https://graph.facebook.com/v2.10',
       :authorize_url => "https://www.facebook.com/v2.10/dialog/oauth"
     }

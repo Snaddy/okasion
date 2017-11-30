@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :city, presence: true, allow_blank: true
   validates_length_of :name, maximum: 50
-  validates_acceptance_of :accept, allow_nil:false, on: :create, message: 'You must agree to the Privacy Policy and Terms of Service before signin up'
+  validates_acceptance_of :accept, allow_nil:true, on: :create, message: 'You must agree to the Privacy Policy and Terms of Service before signin up'
 
   def self.from_omniauth(auth)
   	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
