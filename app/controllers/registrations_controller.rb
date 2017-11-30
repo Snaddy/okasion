@@ -1,10 +1,18 @@
 class RegistrationsController < Devise::RegistrationsController
 
-	def update_city
+	def update
+    @user = current_user
+        if @user.update(user_params)
+          redirect_to profile_path 
+        else
+          super
+        end
+  end
+
+  def update_city
 		@user = current_user
-        if @user.update(update_params)
+        if @user.update(city_params)
           redirect_to root_path
-          flash[:notice] = "City saved."
         else
           render 'city'
         end
@@ -16,9 +24,18 @@ class RegistrationsController < Devise::RegistrationsController
 
 	protected
 
+  	def update_resource(resource, params)
+    	resource.update_without_password(params)
+  	end
+
 	private
 
-	def update_params
-      params.require(:user).permit(:city)
-    end
+	def city_params
+      	params.require(:user).permit(:city)
+  end
+
+  def user_params
+        params.require(:user).permit(:email, :name, :city)
+  end
+
 end

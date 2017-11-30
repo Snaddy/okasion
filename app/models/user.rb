@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
-  validates :name, presence: true
+  validates :name, presence: true, allow_blank: false
   validates :city, presence: true, allow_blank: true
   validates_length_of :name, maximum: 50
   validates_acceptance_of :accept, allow_nil:true, on: :create, message: 'You must agree to the Privacy Policy and Terms of Service before signin up'

@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#save files to s3 bucket
+gem 'fog-aws'
 #pagination
 gem 'will_paginate', '~> 3.1.0'
 #image cropping/ resizing

@@ -1,4 +1,20 @@
 .profile{
 	margin-top: 20px;
 	margin-bottom: 10px;
+
+	.info{
+		width: 500px;
+		margin: auto;
+	}
+
+	.btn.btn-primary{
+		display:show;
+		position: relative;
+		top: 50%;
+		margin-top: -18px;
+		width: 200px;
+		background-color: #90bbd1;
+		border:none;
+		float: right;
+	}
 }

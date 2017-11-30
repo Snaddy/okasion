@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
     get 'register' => 'devise/registrations#new', as: 'register'
 
+    get 'profile/edit' => 'devise/registrations#edit', as: 'edit_user'
+
     get 'user/city' => 'registrations#city', as: 'add_city'
 
     patch 'user/city' => 'registrations#update_city'

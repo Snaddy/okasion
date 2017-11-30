@@ -4,6 +4,7 @@ class PagesController < ApplicationController
 
 	def profile
 		@city = current_user.city
+		@name = current_user.name
 		@events = current_user.events.order('created_at DESC').paginate(page: params[:page], per_page: 10)
 	end
 

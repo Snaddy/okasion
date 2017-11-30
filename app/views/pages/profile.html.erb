@@ -1,6 +1,19 @@
 <div class="profile">
+
+<div class="info">
+	<strong>Name: </strong><%= @name %><br>
+	<strong>City: </strong><%= @city %>
+
+	<%= link_to edit_user_path, class: 'btn btn-primary' do%>
+ 		Edit Profile <span class="fa fa-pencil"></span>
+ 	<% end %>
+</div>
+
 <div class="feed">
-city: <%= @city %>
+
+
+<hr>
+
 <div class="events">
 	<%= render @events %>
 </div>
