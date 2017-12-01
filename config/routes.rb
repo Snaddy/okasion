@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   registrations: 'registrations'}
 
   devise_scope :user do
-    delete 'users/sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_sessions
     
     get 'login' => 'devise/sessions#new', as: 'login'
 
