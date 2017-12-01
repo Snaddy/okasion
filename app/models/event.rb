@@ -116,4 +116,9 @@ class Event < ActiveRecord::Base
       end
     end
 
+    #scopes for filters
+    #scope :date, where(date: date)
+    #scope :keywords, where("title like ? OR description = ?", "#{keywords}%", "#{keywords}%")}
+    #scope :with_category, where(category: category)
+
 end

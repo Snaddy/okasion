@@ -10,8 +10,8 @@
 
 <div class="info">
 	<strong>Name: </strong><%= @name %><br>
-	<strong>City: </strong><%= @city %>
-
+	<strong>City: </strong><%= @city %><br>
+<div>
 	<% if !@user.provider? %>
 		<%= link_to edit_password_path, class: 'btn btn-primary' do%>
 	 		Edit Password
@@ -21,6 +21,7 @@
 	<%= link_to edit_user_path, class: 'btn btn-primary' do%>
  		Edit Profile
  	<% end %>
+</div>
 </div>
 
 <div class="feed">
