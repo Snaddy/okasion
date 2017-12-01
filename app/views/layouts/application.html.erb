@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
+  <meta name="viewport" content="width=850">
 </head>
 <body>
 <nav class="navbar navbar-expand navbar-light bg-faded">
@@ -59,10 +60,7 @@
 
 	</div>
 </nav>
-<% if !user_signed_in? %>
-<div class="discover">Discover what's happening near you.</div>
-  <%= image_tag('bg2.jpg', class:'bg-img') %>
-<% else %>
+
 
 <script type="text/javascript">
     function initMap() {
@@ -73,7 +71,6 @@
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr49omMbQnK7OiEFsik8y2PotB4eQPKso&libraries=places&callback=initMap"></script>
 
-<% end %> 
 <%= yield %>
 
 <%= link_to '#', class: "btn btn-primary back-to-top-button" do %>

@@ -23,27 +23,7 @@
 <% if @events.count == 0 && params[:search].present? %>
 
 <div class="no-results">
-	<%= audio_tag "error.mp3", autoplay: true, id: 'audio' %>
+	No events for this location were found
 </div>
 
 <% end %>
-
-<script type="text/javascript">
-	
-$(document).ready(function(){
-	$('.title').each(function(){
-		var height = $(this).height();
-		$(this).css("bottom", height + "px");
-	});
-});
-	
-</script>
-
-<script type="text/javascript">
-	var audioElement = document.getElementById('audio')
-audioElement.addEventListener('ended', function() {
-    this.currentTime = 0;
-    this.play();
-}, false);
-
-</script>
