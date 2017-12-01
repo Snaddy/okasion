@@ -91,7 +91,8 @@
 <div class="nearby-events">
 
 <div class="nearby-title">Nearby events</div>
-<% if @event.nearbys(10).empty? %>
+
+<% if @event.nearbys(10).blank? %>
 
 <div class='no-events'>No nearby events</div>
 
