@@ -3,7 +3,8 @@ class RegistrationsController < Devise::RegistrationsController
 	def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to profile_path 
+      redirect_to profile_path
+      flash[:notice] = 'Changes saved successfully'
     else
       super
     end
@@ -11,13 +12,16 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update_password
     @user = current_user
-    if @user.provider?
+    if !@user.provider?
       if @user.update_with_password(password_params)
         #bypass_sign_in(@user)
         redirect_to profile_path
+        flash[:notice] = 'Successfully changed password. Please log in with your new password!'
       else
         render "edit_password"
       end
+    else
+      redirect_to profile_path
     end
   end
 
@@ -55,7 +59,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def password_params
-    params.require(:user).permit(:password, :password_confirmation)
+    params.require(:user).permit(:password, :password_confirmation, :current_password)
   end
 
 end

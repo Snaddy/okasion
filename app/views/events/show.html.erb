@@ -1,7 +1,7 @@
-<% flash.each do |type, message| %>
+<% if flash.now[:notice] %>
 <div class="messages">
-    <div class="alert <%= bootstrap_class_for(type)%>">
-    	<%= message %>
+    <div class="alert alert-info">
+    	<%= flash[:notice] %>
     </div>
 </div>
 <% end %>
@@ -89,8 +89,15 @@
 </div>
 
 <div class="nearby-events">
+
 <div class="nearby-title">Nearby events</div>
-	<% for event in @event.nearbys(10).limit(5) %>
+<% if @event.nearbys(10).empty? %>
+
+<div class='no-events'>No nearby events</div>
+
+<% else %>
+	<% for event in @event.nearbys(10).where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+        Date.today, Date.today, Date.today, Date.today).limit(5) %>
 		<%= div_for event, :class => "nearby-event-items" do %>
 			<%= link_to event_path(event.id) do %>
 				<%= image_tag event.cover_image.to_s %>
@@ -99,6 +106,8 @@
 		<% end %>
 	<% end %> 
 </div>
+
+<% end %>
 
 </div>
 

@@ -35,6 +35,12 @@ en:
               password:
                 blank: "Please enter a password"
                 confirmation: "Password does not match"
+              password_confirmation:
+                blank: "Please confirm your new password"
+                confirmation: "Passwords do not match"
+              current_password:
+                blank: "Please enter your current password"
+                invalid: "Incorrect password"
           event:
             attributes:
               title: 
