@@ -61,16 +61,6 @@
 	</div>
 </nav>
 
-
-<script type="text/javascript">
-    function initMap() {
-        var input = document.getElementsByClassName("location-field");
-        var searchComplete = new google.maps.places.Autocomplete(input);
-    }
-</script>
-
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAPS_API_KEY']%>&libraries=places&callback=initMap"></script>
-
 <%= yield %>
 
 <%= link_to '#', class: "btn btn-primary back-to-top-button" do %>
@@ -80,3 +70,15 @@
 <div class="scroll-top-val"></div>
 </body>
 </html>
+
+<script type="text/javascript">
+    function initMap() {
+        var inputs = document.getElementsByClassName("location-field");
+        var i;
+        for (i = 0; i < inputs.length; i++) {
+          var searchComplete = new google.maps.places.Autocomplete(inputs[i]);
+        }
+    }
+</script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr49omMbQnK7OiEFsik8y2PotB4eQPKso&libraries=places&callback=initMap"></script>
