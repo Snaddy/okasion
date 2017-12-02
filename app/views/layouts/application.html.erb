@@ -65,11 +65,13 @@
 <script type="text/javascript">
     function initMap() {
         var input = document.getElementById("search");
+        var search = document.getElementById("search-field");
         var autoComplete = new google.maps.places.Autocomplete(input);
+        var searchComplete = new google.maps.places.Autocomplete(search);
     }
 </script>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr49omMbQnK7OiEFsik8y2PotB4eQPKso&libraries=places&callback=initMap"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAPS_API_KEY']%>&libraries=places&callback=initMap"></script>
 
 <%= yield %>
 
