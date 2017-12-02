@@ -1,5 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  before_action :check_provider, only: :update_password
+
 	def update
     @user = current_user
     if @user.update(user_params)
@@ -12,7 +14,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update_password
     @user = current_user
-    if @user.provider?
       if @user.update_with_password(password_params)
         #bypass_sign_in(@user)
         redirect_to profile_path
@@ -20,9 +21,6 @@ class RegistrationsController < Devise::RegistrationsController
       else
         render "edit_password"
       end
-    else
-      redirect_to profile_path
-    end
   end
 
   def edit_password
@@ -60,6 +58,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   def password_params
     params.require(:user).permit(:password, :password_confirmation, :current_password)
+  end
+
+  def check_provider
+    if !current_user.provider?
+      redirect_to profile_path 
+    end
   end
 
 end
