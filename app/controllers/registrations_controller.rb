@@ -12,7 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update_password
     @user = current_user
-    if !@user.provider?
+    if @user.provider?
       if @user.update_with_password(password_params)
         #bypass_sign_in(@user)
         redirect_to profile_path
