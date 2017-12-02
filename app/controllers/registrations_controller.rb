@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
   before_action :check_provider, only: :update_password
+  before_action :authenticate_user!
 
 	def update
     @user = current_user
@@ -46,6 +47,15 @@ class RegistrationsController < Devise::RegistrationsController
     	resource.update_without_password(params)
   	end
 
+    
+  def check_provider
+    if current_user.provider?
+      redirect_to profile_path
+    else
+      redirect_to edit_password_path
+    end
+  end
+
 	private
 
 	def city_params
@@ -58,12 +68,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def password_params
     params.require(:user).permit(:password, :password_confirmation, :current_password)
-  end
-
-  def check_provider
-    if !current_user.provider?
-      redirect_to profile_path 
-    end
   end
 
 end
