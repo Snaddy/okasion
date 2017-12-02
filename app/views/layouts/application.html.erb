@@ -27,7 +27,7 @@
 
         <div id="search-form">
           <%= form_tag events_path, :method => :get do %>
-            <%= text_field_tag :search, params[:search], class: 'search-field', placeholder: 'Search' %>
+            <%= text_field_tag :search, params[:search], class: 'location-field', placeholder: 'Search' %>
             <%= button_tag(type: "submit", class: "btn btn-default search-btn") do %>
                 <i class="fa fa-search"></i>
             <% end %> 
@@ -64,9 +64,7 @@
 
 <script type="text/javascript">
     function initMap() {
-        var input = document.getElementById("search");
-        var search = document.getElementById("search-field");
-        var autoComplete = new google.maps.places.Autocomplete(input);
+        var input = document.getElementByClassName("location-field");
         var searchComplete = new google.maps.places.Autocomplete(search);
     }
 </script>
