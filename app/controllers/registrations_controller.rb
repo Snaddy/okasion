@@ -1,7 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
 
   before_action :check_provider, only: [:update_password, :edit_password]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:update, :update_password, :edit_password, :update_city, :city]
+  before_action :email_password_reset, only: :reset_password
 
 	def update
     @user = current_user
@@ -41,6 +42,16 @@ class RegistrationsController < Devise::RegistrationsController
 		@user = current_user
 	end
 
+  def reset_password
+    @user = User.find_by(email: params[:email])
+    if User.exists?(email: params[:email])
+      @user.send_reset_password_instructions
+      flash[:notice] = "Password reset was successfully sent"
+    else
+      flash[:warning] = "This email could not be found"
+    end
+  end
+
 	protected
 
   	def update_resource(resource, params)
@@ -51,8 +62,16 @@ class RegistrationsController < Devise::RegistrationsController
   def check_provider
     if current_user.provider?
       redirect_to profile_path
-    else
-      redirect_to edit_password_path
+    end
+  end
+
+  def email_password_reset
+    if current_user.provider?
+      if @user.provider = 'facebook'
+        flash[:warning] = 'This email is connected to facebook. Please try logging in with Facebook instead'
+      else @user.provider = 'google_oauth2'
+        flash[:warning] = 'This email is connected to Google. Please try logging in with Google instead'
+      end
     end
   end
 

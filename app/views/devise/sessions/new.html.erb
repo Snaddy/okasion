@@ -1,12 +1,14 @@
 <div class="user-form">
-<h3>Log in</h3>
+<h4>Discover what's happening near you</h4>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
 <% flash.each do |type, message| %>
+  <div class="messages">
     <div class="alert <%= bootstrap_class_for(type)%>">
     <%= message %>
     </div>
+  </div>
 <% end %>
 
 <div class="facebook-login">

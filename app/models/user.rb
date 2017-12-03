@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :events, dependent: :destroy
   # Include default devise modules. Others available are:
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable,
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable,
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   validates :name, presence: true, allow_blank: false
@@ -17,13 +17,13 @@ class User < ActiveRecord::Base
       user.name = auth.info.name
     	user.password = Devise.friendly_token[0,20]
     	user.skip_confirmation!
+      user.confirmed_at = DateTime.now
     end
   end
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
     user = User.where(email: data['email']).first
-
     unless user
          user = User.create(name: data['name'],
             email: data['email'],
@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
      end
     user
     user.skip_confirmation!
+    user.confirmed_at = DateTime.now
 end
   
 end

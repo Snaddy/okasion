@@ -1,5 +1,5 @@
 .user-form{
-	width: 500px;
+	width: 530px;
 	padding: 20px;
 	margin: auto;
 	margin-top: 20px;
@@ -16,6 +16,13 @@
 	}
 
 	h3{
+		font-weight: bold;
+		margin-bottom: 1rem;
+		color: #656565;
+		text-align:center;
+	}
+
+	h4{
 		font-weight: bold;
 		margin-bottom: 1rem;
 		color: #656565;
@@ -68,7 +75,7 @@
 }
 
 .field{
-	margin-top: -1px;
+	margin-bottom: 10px;
 	outline: none;
 }
 

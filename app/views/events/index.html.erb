@@ -7,6 +7,25 @@
 <% end %>
 
 <div class="index">
+
+<div class="search-filters">
+	<%= form_tag events_path, :method => :get do %>
+            
+        <div class="form-field">
+			<%= label :date, 'Date' %><br>
+	        <%= date_select :choose_date, ''  %>
+		</div>
+
+          <div class="form-field">
+			  <%= label :Category, 'Category' %><br>
+			  <%= select_tag :with_category, options_for_select([['Sports','sports'],['Entertainment','entertainment'],['Music','music'], ["Food + Drinks", "food + drinks"]]) %>
+		  </div>
+            
+            <div class="actions">
+            <%= submit_tag "Apply filters", class: "btn btn-primary filter-btn"%> </div>
+    <% end %>
+</div>
+
 	<div class="feed">
 		<div class="events">
 			<%= render @events %>
@@ -17,13 +36,11 @@
 		<% if @events.next_page %>
 			<div id="load-more-posts" class="btn btn-primary"> Load more posts</div>
 		<% end %>
+
+		<% if @events.count == 0 %>
+			<div class="no-results">
+				No events happening today :(
+			</div>
+		<% end %>
 	</div>
 </div>
-
-<% if @events.count == 0 && params[:search].present? %>
-
-<div class="no-results">
-	No events happening today :'(
-</div>
-
-<% end %>

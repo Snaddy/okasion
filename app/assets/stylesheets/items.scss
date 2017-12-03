@@ -1,5 +1,5 @@
 .feed{
-	width:500px;
+	width:530px;
 	margin:auto;
 
 	.btn {
@@ -16,10 +16,16 @@
 }
 
 .event-item{
-	height: 250px;
+	width: 530px;
+	height: 265px;
 	margin-bottom: 15px;
 	a, a:hover{
 		color: white;
+	}
+
+	img{
+		width: 100%;
+		height: 100%;
 	}
 }
 

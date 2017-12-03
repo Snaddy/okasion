@@ -104,12 +104,12 @@ class Event < ActiveRecord::Base
         schedule
     end 
 
-    def today(start)
+    def calender(start)
       if recurring.empty?
         [self]
       else
-          start_date = Date.today
-          end_date = Date.today 
+          start_date = start
+          end_date = start 
           schedule(start_date).occurrences(end_date).map do |date|
               Event.new(id: id, title: title, cover_image: cover_image)
           end
@@ -117,8 +117,6 @@ class Event < ActiveRecord::Base
     end
 
     #scopes for filters
-    #scope :date, where(date: date)
-    #scope :keywords, where("title like ? OR description = ?", "#{keywords}%", "#{keywords}%")}
-    #scope :with_category, where(category: category)
-
+    scope :choose_date, -> (date) { where date: date }
+    scope :with_category, -> (category) { where category: category }
 end

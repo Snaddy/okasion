@@ -90,12 +90,12 @@
 
 <div class="nearby-events">
 
-<div class="nearby-title">Nearby events</div>
+<div class="nearby-title">Nearby events happening today</div>
 
 <% if @event.nearbys(10).where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
         Date.today, Date.today, Date.today, Date.today).limit(5).flat_map{ |e| e.today(params.fetch(:date, Time.now).to_date) }.empty? %>
 
-<div class='no-events'>No nearby events</div>
+<div class='no-events'>No events happening today :(</div>
 
 <% else %>
 	<% for event in @event.nearbys(10).where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 

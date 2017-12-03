@@ -7,7 +7,7 @@
 	}
 
 	#search-field{
-		width: 550px;
+		width: 350px;
 		height: 38px;
 		border: solid 1px #d3d3d3;
 		border-radius: 5px 0px 0px 5px;
@@ -22,7 +22,7 @@
 }
 
 .container{
-	width:850px;
+	width:530px;
 	white-space:nowrap;
 }
 
@@ -47,6 +47,22 @@
 	margin-right:0px;
 	border: solid 1px #90bbd1;
 	border-radius: 0px 5px 5px 0px;
+}
+
+.home-btn{
+	color:white;
+	background-color: #90bbd1;
+	overflow: hidden;
+	margin-right:0px;
+	border: solid 1px #90bbd1;
+}
+
+.home-btn:hover{
+	color:white;
+}
+
+.fa-home{
+	font-size: 20px;
 }
 
 i{
