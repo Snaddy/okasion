@@ -13,7 +13,7 @@
             
         <div class="form-field">
 			<%= label :date, 'Date' %><br>
-	        <%= date_select :choose_date, ''  %>
+	        <%= date_select :choose_date, '', start_year: Date.today.year, end_year: Date.today.year + 5  %>
 		</div>
 
           <div class="form-field">
@@ -22,7 +22,8 @@
 		  </div>
             
             <div class="actions">
-            <%= submit_tag "Apply filters", class: "btn btn-primary filter-btn"%> </div>
+            <%= submit_tag "Apply filters", class: "btn btn-primary filter-btn"%> 
+            </div>
     <% end %>
 </div>
 
@@ -39,7 +40,7 @@
 
 		<% if @events.count == 0 %>
 			<div class="no-results">
-				No events happening today :(
+				No events found
 			</div>
 		<% end %>
 	</div>

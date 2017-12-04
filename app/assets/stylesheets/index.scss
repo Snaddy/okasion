@@ -1,28 +1,30 @@
 .index{
+	position: relative;
 	margin:auto;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	width: 885px;
+	width: 530px;
 
 	.feed{
-		display:inline-block;
-		vertical-align:top;
-		border: 1px solid #d3d3d3;
+		display: inline-block;
+	}
+
+	.search-filters{
+		position: absolute;
+		border: solid 1px #d3d3d3;
+		vertical-align: top;
+		padding: 10px;
+		margin-right: 10px;
+		right: 100%;
+		width: 340px;
 	}
 }
 
 .no-results {
-  width: 540px;
+  width: 530px;
   margin:auto;
   color: #b8b8b8;
   text-align: center;
-}
-
-.search-filters{
-	display:inline-block;
-	width: 335px;
-	border: solid 1px #d3d3d3;
-	padding: 10px;
 }
 
 .filter-btn{
@@ -49,6 +51,7 @@
    	width: 80px;
   	padding-left: 10px;
     -moz-appearance: none;
+    display:inline;
 }
 
 #choose_date__2i{
@@ -65,7 +68,7 @@
 }
 
 #with_category{
-	width: 100%;
+	width: 310px;
 	background: url('arrow.jpg') no-repeat;
 	background-size: 15px;
 	background-position: 283px;

@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
   get 'new' => "events#new", as: 'new_event'
 
+  post 'new' => 'events#new'
+
   get 'edit/:id' => "events#edit", as: 'edit_event'
+
+  post 'edit/:id' => 'events#edit'
 
   get 'event/:id' => "events#show", as: 'event'
 
@@ -28,7 +32,11 @@ Rails.application.routes.draw do
     
     get 'login' => 'devise/sessions#new', as: 'login'
 
+    post 'login' => 'devise/sessions#create'
+
     get 'register' => 'devise/registrations#new', as: 'register'
+
+    post 'register' => 'devise/registrations#create'
 
     get 'profile/edit' => 'devise/registrations#edit', as: 'edit_user'
 

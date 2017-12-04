@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   before_action :check_provider, only: [:update_password, :edit_password]
   before_action :authenticate_user!, only: [:update, :update_password, :edit_password, :update_city, :city]
-  before_action :email_password_reset, only: :reset_password
+  before_action :email_password_reset, only: [:reset_password]
 
 	def update
     @user = current_user
@@ -67,6 +67,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def email_password_reset
     if current_user.provider?
+      redirect_to new_password_path(current_user)
       if @user.provider = 'facebook'
         flash[:warning] = 'This email is connected to facebook. Please try logging in with Facebook instead'
       else @user.provider = 'google_oauth2'
