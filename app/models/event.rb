@@ -115,8 +115,8 @@ class Event < ActiveRecord::Base
           end
       end
     end
-
-    #scopes for filters
-    scope :choose_date, -> (date) { where date: date }
-    scope :with_category, -> (category) { where category: category }
+    
+    # scopes for filters
+    # scope :choose_date, -> (date) { where("date = ?", date)}
+    # scope :with_category, -> (category) { where("category = ?", category) }
 end

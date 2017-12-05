@@ -9,22 +9,24 @@
 <div class="index">
 
 <div class="search-filters">
-	<%= form_tag events_path, :method => :get do %>
-            
+<div class="filter-fields">
+	<%= form_tag '/events', :method => :get do %>
+        <%= hidden_field_tag :search, params[:search] %>
         <div class="form-field">
 			<%= label :date, 'Date' %><br>
-	        <%= date_select :choose_date, '', start_year: Date.today.year, end_year: Date.today.year + 5  %>
+	        <%= date_select :date_filter, '' , start_year: Time.now.year, end_year: Time.now.year + 5, prompt: true %>
 		</div>
 
           <div class="form-field">
 			  <%= label :Category, 'Category' %><br>
-			  <%= select_tag :with_category, options_for_select([['Sports','sports'],['Entertainment','entertainment'],['Music','music'], ["Food + Drinks", "food + drinks"]]) %>
+			  <%= select_tag :with_category, options_for_select(['Art', 'Educational', 'Entertainment', 'Family', 'Festivals', 'Fitness', 'Food and Drinks', 'Fundraising', 'Music', 'Outdoors', 'Sports'], params[:with_category]), :prompt => "All categories" %>
 		  </div>
             
             <div class="actions">
-            <%= submit_tag "Apply filters", class: "btn btn-primary filter-btn"%> 
+            <%= submit_tag "Apply filters", class: "btn btn-primary filter-btn", name: 'filter'%> 
             </div>
     <% end %>
+</div>
 </div>
 
 	<div class="feed">
@@ -39,9 +41,16 @@
 		<% end %>
 
 		<% if @events.count == 0 %>
+			<% if @date || params[:with_category]%>
+			<div class="no-results">
+				0 results <%= 'for' + @date.strftime("%B, %-d, %Y") unless @date.blank? %>
+				<%= 'in ' + params[:with_category] unless params[:with_category].blank? %>  
+			</div>
+			<% else %>
 			<div class="no-results">
 				No events found
 			</div>
+			<% end %>
 		<% end %>
 	</div>
 </div>

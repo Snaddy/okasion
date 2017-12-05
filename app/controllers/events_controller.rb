@@ -6,18 +6,41 @@ require 'will_paginate/array'
 
   def index
     if params[:search].present?
-        @events = Event.near(params[:search], 100)
-        @events_near = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
-          Date.today, Date.today, Date.today, Date.today).near(params[:search], 100)
-        @events = @events_near.flat_map{ |e| e.calender(params.fetch(:date, Time.now).to_date) }
-        @events = @events.paginate(page: params[:page], per_page: 10)
+      @city = params[:search]
+      #filter events  
+      @events = Event.near(@city, 100)
+      if params[:date_filter]
+        date_filter = params[:date_filter]
+        @date = Date.new date_filter["(1i)"].to_i, date_filter["(2i)"].to_i, date_filter["(3i)"].to_i rescue nil
+        @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+            @date, @date, @date, @date)
+        @events = @events.flat_map{ |e| e.calender(@date) }
+      else
+        @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+            Date.today, Date.today, Date.today, Date.today).near(@city, 100)
+        @events = @events.flat_map{ |e| e.calender(Time.now.to_date) }
+      end
+      @events = @events.select{|event| event.category == params[:with_category]} unless params[:with_category].blank?
+
     else
       @city = current_user.city
-      @events_near = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
-          Date.today, Date.today, Date.today, Date.today).near(@city, 100)
-      @events = @events_near.flat_map{ |e| e.calender(params.fetch(:date, Time.now).to_date) }
-      @events = @events.paginate(page: params[:page], per_page: 10)
+      #filter events  
+      @events = Event.near(@city, 100)
+      if params[:date_filter]
+        date_filter = params[:date_filter]
+        @date = Date.new date_filter["(1i)"].to_i, date_filter["(2i)"].to_i, date_filter["(3i)"].to_i rescue nil
+        @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+            @date, @date, @date, @date)
+        @events = @events.flat_map{ |e| e.calender(@date) }
+      else
+        @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+            Date.today, Date.today, Date.today, Date.today).near(@city, 100)
+        @events = @events.flat_map{ |e| e.calender(Time.now.to_date) }
+      end
+      @events = @events.select{|event| event.category == params[:with_category]} unless params[:with_category].blank?
     end
+     #paginate results
+      @events = @events.paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -74,15 +97,14 @@ require 'will_paginate/array'
 
   private 
 
+  def create_date hash
+    %w(1 2 3).map { |e| hash["(#{e}i)"].to_i }
+  end
+
   def event_params
     params.require(:event).permit(:title, :description, :cover_image, 
       :category, :url, :date, :enddate, 
       :address, :hour, :minute, :meridiem,
       :endhour, :endminute, :endmeridiem, :recurring)
   end
-
-  def filtering_params(params)
-    params.slice(:choose_date, :keywords, :with_category)
-  end
-
 end

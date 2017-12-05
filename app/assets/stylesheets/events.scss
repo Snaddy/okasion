@@ -53,9 +53,11 @@ textarea{
 
 #event_category, #event_recurring{
 	width: 100%;
-	background: url('arrow.jpg') no-repeat;
-	background-size: 15px;
-	background-position: 428px;
+	@-moz-document url-prefix() {
+		background: url('arrow.jpg') no-repeat;
+		background-size: 15px;
+		background-position: 428px;
+	}
 	border: 1px solid #d3d3d3;
    	font-size: 16px;
    	color: #59595A;
@@ -71,9 +73,11 @@ input[type=file] {
 
 #event_hour, #event_minute, #event_meridiem, #event_endhour,
 #event_endminute, #event_endmeridiem{
-	background: url('arrow.jpg') no-repeat;
-	background-size: 15px;
-	background-position: 55px;
+	@-moz-document url-prefix() {
+		background: url('arrow.jpg') no-repeat;
+		background-size: 15px;
+		background-position: 55px;
+	}
 	border: 1px solid #d3d3d3;
    	font-size: 16px;
    	color: #59595A;
@@ -84,9 +88,11 @@ input[type=file] {
 }
 
 #event_date_1i, #event_date_2i, #event_date_3i, #event_enddate_1i, #event_enddate_2i, #event_enddate_3i{
-	background: url('arrow.jpg') no-repeat;
-	background-size: 15px;
-	background-position: 120px;
+	@-moz-document url-prefix() {
+		background: url('arrow.jpg') no-repeat;
+		background-size: 15px;
+		background-position: 120px;
+	}
 	border: 1px solid #d3d3d3;
    	font-size: 16px;
    	color: #59595A;
