@@ -81,11 +81,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    user_name:      ENV['MAIL_USERNAME'],
-    password:       ENV['MAIL_PASSWORD'],
+    user_name:      ENV['SENDGRID_USERNAME'],
+    password:       ENV['SENDGRID_PASSWORD'],
     domain:         ENV['MAIL_HOST'],
-    address:       'smtp.gmail.com',
+    address:       'smtp.sendgrid.net',
     port:          '587',
-    authentication: :plain,
+    authentication: :plain
   }
 end

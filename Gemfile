@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#sendgrid
+gem 'sendgrid-ruby'
 #filter queries
 gem 'filterrific'
 #pagination
