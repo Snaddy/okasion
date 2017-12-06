@@ -1,11 +1,17 @@
 <div class ="logo">
-	<%= image_tag("logo3.png") %>
+	<%= image_tag "https://okasion.herokuapp.com/assets/logo3-b51e6e996017760fffb5eeb5606df36c41f948361a27c7000375a7632eda3f9c.png" %>
 </div>
 
 <div class="email-content">
-<p>Welcome, <%= @name %>!</p>
+<p>Welcome <%= @name %>,</p>
 
 <p>You can confirm your account through the link below:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<%= link_to confirmation_url(@resource, confirmation_token: @token), class: 'btn btn-primary' do %>
+	Confirm my account
+<% end %>
+
+<p>Cheers, <br>
+Okasion team</p>
+
 </div>
