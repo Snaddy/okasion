@@ -1,7 +1,6 @@
 class PasswordsController < ApplicationController
 
 def new
-	@user = User.new
 end
 
 def reset_password
