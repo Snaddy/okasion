@@ -66,11 +66,11 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def email_password_reset
-    if current_user.provider?
-      redirect_to new_password_path(current_user)
-      if @user.provider = 'facebook'
+    if @user.provider?
+      redirect_to root_path
+      if @user.provider == 'facebook'
         flash[:warning] = 'This email is connected to facebook. Please try logging in with Facebook instead'
-      else @user.provider = 'google_oauth2'
+      else @user.provider == 'google_oauth2'
         flash[:warning] = 'This email is connected to Google. Please try logging in with Google instead'
       end
     end
