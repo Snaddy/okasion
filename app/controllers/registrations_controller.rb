@@ -52,6 +52,7 @@ class RegistrationsController < Devise::RegistrationsController
         end
       else
         @user.send_reset_password_instructions
+      end
     else
       flash[:warning] = "This email could not be found"
     end
