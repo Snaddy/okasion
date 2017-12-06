@@ -25,8 +25,8 @@ Rails.application.routes.draw do
 
  resources :events
 
- devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks", confirmations: 'confirmations',
-  registrations: 'registrations'}
+ devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks", confirmations: 'confirmations',
+  registrations: 'registrations', passwords: 'passwords' }
 
   devise_scope :user do
     
@@ -42,10 +42,15 @@ Rails.application.routes.draw do
 
     get 'user/city' => 'registrations#city', as: 'add_city'
 
-    get 'profile/password/edit' => 'registrations#edit_password', as: 'edit_password'    
-  
+    get 'profile/password/edit' => 'registrations#edit_password', as: 'edit_password'
+
     patch 'user/password' => 'registrations#update_password' 
 
     patch 'user/city' => 'registrations#update_city'
+
+    get 'password/reset' => 'passwords#new', as: 'password_reset'
+
+    post 'password/reset' => 'passwords#reset_password'
+
   end
 end

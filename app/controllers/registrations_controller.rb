@@ -41,23 +41,6 @@ class RegistrationsController < Devise::RegistrationsController
 		@user = current_user
 	end
 
-  def reset_password
-    @user = User.find_by(email: params[:email])
-    if User.exists?(email: params[:email])
-      if @user.provider?
-        if @user.provider == 'facebook'
-          flash[:warning] = 'This email is connected to facebook. Please try logging in with Facebook instead'
-        else @user.provider == 'google_oauth2'
-          flash[:warning] = 'This email is connected to Google. Please try logging in with Google instead'
-        end
-      else
-        @user.send_reset_password_instructions
-      end
-    else
-      flash[:warning] = "This email could not be found"
-    end
-  end
-
 	protected
 
   	def update_resource(resource, params)

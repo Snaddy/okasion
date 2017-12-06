@@ -1,0 +1,27 @@
+<div class="user-form">
+
+<h3>Forgot your password?</h3>
+
+<%= form_for :new, url: password_reset_path, method: :post do |f| %>
+<% flash.each do |type, message| %>
+  <div class="messages-login">
+    <div class="alert alert-danger">
+    <%= message %>
+    </div>
+  </div>
+<% end %>
+
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Send me reset password instructions" %>
+  </div>
+
+<div class="links">
+  <%= link_to("Already have an account? Log in", login_path) %><br>
+  <%= link_to("Don't have an account? Sign up", register_path) %>
+  </div>
+<% end %>
+</div>
