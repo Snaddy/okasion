@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
 
 
   def email_is_changed
-    self.confirmed_at = nil if previous_changes['email'].any?
+    self.confirmed_at = nil if self.email_changed?
   end
   
 end
