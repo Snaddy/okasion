@@ -52,5 +52,9 @@ Rails.application.routes.draw do
 
     post 'password/reset' => 'passwords#reset_password'
 
+    post 'email/confirmations' => 'confirmations#send_confirmation', as: 'send_confirmation'
+
+    get 'email/confirmations' => 'confirmations#send_confirmation'
+
   end
 end

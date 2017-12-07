@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 
 before_action :authenticate_user!
+before_action :confirmed, only: [:new, :create, :edit, :update, :destroy]
 
 require 'will_paginate/array'
 
@@ -95,10 +96,13 @@ require 'will_paginate/array'
     @event = Event.find(params[:id])
   end
 
-  private 
+  private
 
-  def create_date hash
-    %w(1 2 3).map { |e| hash["(#{e}i)"].to_i }
+  def confirmed
+    if !current_user.confirmed?
+      flash[:alert] = "Please verify your email."
+      redirect_to root_path
+   end
   end
 
   def event_params

@@ -269,5 +269,5 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
-  config.allow_unconfirmed_access_for = 365.days
+  config.allow_unconfirmed_access_for = nil
 end
