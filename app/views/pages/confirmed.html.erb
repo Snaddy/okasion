@@ -7,8 +7,11 @@ THANK YOU!<br>
 
 <p>Thanks for verifying your email. You're the best!</p>
 
+
+<% if !user_signed_in? %>
 <%= link_to login_path, class: 'btn btn-primary confirmed-btn' do%>
  		Login
 <% end %>
 
+<% end %>
 </div>
