@@ -1,4 +1,4 @@
-class ConfirmationsController < Devise::ConfirmationsController
+herokuclass ConfirmationsController < Devise::ConfirmationsController
 
 	before_action :authenticate_user!
 
