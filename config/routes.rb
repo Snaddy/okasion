@@ -27,8 +27,7 @@ Rails.application.routes.draw do
 
  resources :events
 
- devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks", confirmations: 'confirmations',
-  registrations: 'registrations', passwords: 'passwords' }
+ devise_for :users, controllers: { confirmations: 'confirmations', omniauth_callbacks: "omniauth_callbacks", registrations: 'registrations', passwords: 'passwords' }
 
   devise_scope :user do
     

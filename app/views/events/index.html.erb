@@ -2,7 +2,7 @@
 <div class="messages-confirm">
     <div class="alert alert-success">
     	<%= flash[:alert] %> 
-    	<%= link_to 'Send confirmation email', send_reconfirmation_path %>
+    	<%= link_to 'Send confirmation email', send_reconfirmation_path(current_user) %>
     </div>
 </div>
 <% end %>
