@@ -11,8 +11,6 @@ class User < ActiveRecord::Base
   validates_length_of :name, maximum: 50
   validates_acceptance_of :accept, allow_nil:true, on: :create, message: 'You must agree to the Privacy Policy and Terms of Service before signin up'
 
-  after_update :email_is_changed
-
   def self.from_omniauth(auth)
   	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
     	user.email = auth.info.email
@@ -35,11 +33,6 @@ class User < ActiveRecord::Base
     user
     user.skip_confirmation!
     user.confirmed_at = DateTime.now
-  end
-
-
-  def email_is_changed
-    self.confirmed_at = nil if self.email_changed?
   end
   
 end
