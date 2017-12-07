@@ -1,0 +1,29 @@
+.page{
+	width: 500px;
+	margin:auto;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.thank-you{
+	font-size: 40px;
+	font-weight: bold;
+
+	.fa-check{
+		font-size: 70px;
+		color: #24B663;
+	}
+}
+
+.confirmed-btn{
+	width: 300px;
+	height: 38px;
+	color: white;
+	background-color: #90bbd1;
+	border: 1px solid #90bbd1;
+}
+
+.confirmed-btn:hover{
+	background-color: #90bbd1;
+	border: 1px solid #90bbd1;
+}
