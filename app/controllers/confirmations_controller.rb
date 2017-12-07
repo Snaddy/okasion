@@ -14,7 +14,6 @@ class ConfirmationsController < Devise::ConfirmationsController
 	def after_confirmation_path_for(resource_name, resource)
 		if current_user
 			root_path
-			flash[:notice] = 'Thanks for verifying your email!'
 		else
 			confirmed_path
 		end
