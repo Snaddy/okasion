@@ -3,7 +3,7 @@ class ConfirmationsController < Devise::ConfirmationsController
 	before_action :authenticate_user!
 
 	def send_confirmation
-		render 'root'
+		render 'index'
 		@user = current_user
 		@user.send_reconfirmation_instructions
 		flash[:notice] = 'Confirmation email sent!'
