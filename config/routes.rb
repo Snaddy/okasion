@@ -21,8 +21,6 @@ Rails.application.routes.draw do
 
   patch 'event/:id' => "events#update"
 
-  get 'confirmed' => "pages#confirmed", as: 'confirmed'
-
  root 'events#index'
 
  resources :events
