@@ -11,19 +11,9 @@ class ConfirmationsController < Devise::ConfirmationsController
 
 	protected
 
-	def after_resending_confirmation_path_for(resource_name, resource)
-		if current_user
-			root_path
-			flash[:notice] = 'Thanks for verifying your email'
-		else
-			confirmed_path
-		end
-  	end
-
 	def after_confirmation_path_for(resource_name, resource)
 		if current_user
 			root_path
-			flash[:notice] = 'Thanks for verifying your email'
 		else
 			confirmed_path
 		end
