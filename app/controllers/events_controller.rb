@@ -101,6 +101,7 @@ require 'will_paginate/array'
   def confirmed
     if !current_user.confirmed?
       flash[:alert] = "Please verify your email."
+      flash.keep
       redirect_to root_path
    end
   end
