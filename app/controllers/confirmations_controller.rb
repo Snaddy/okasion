@@ -13,8 +13,8 @@ class ConfirmationsController < Devise::ConfirmationsController
 
 	def after_confirmation_path_for(resource_name, resource)
 		flash[:notice] = 'Thanks for confirming your email!'
+		flash.keep
 		root_path
-		flash[:notice] = 'Thanks for confirming your email!'
 	end
 
 end
