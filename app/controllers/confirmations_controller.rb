@@ -9,6 +9,8 @@ class ConfirmationsController < Devise::ConfirmationsController
 		flash[:notice] = 'Confirmation email sent!'
 	end
 
+	protected
+
 	def after_confirmation_path_for(resource_name, resource)
 		if current_user
 			root_path
