@@ -7,7 +7,6 @@ class RegistrationsController < Devise::RegistrationsController
     @user = current_user
     if @user.update(user_params)
       @user.update_column(:email, user_params[:email])
-        @user.update_column(:confirmed_at, nil)   
       redirect_to profile_path
       flash[:notice] = 'Changes saved successfully'
     else
