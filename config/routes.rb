@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   patch 'event/:id' => "events#update"
 
+  get 'confirmed' => 'pages#confirmed', as: 'confirmed'
+
  root 'events#index'
 
  resources :events
@@ -55,8 +57,6 @@ Rails.application.routes.draw do
     post 'email/confirmations' => 'confirmations#send_confirmation', as: 'send_confirmation'
 
     get 'email/confirmations' => 'confirmations#send_confirmation'
-
-    get 'confimed' => 'pages#confirmed', as: 'confirmed'
 
   end
 end
