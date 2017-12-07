@@ -54,7 +54,7 @@ require 'will_paginate/array'
        redirect_to event_path(@event.id)
        flash[:notice] = "Event successfully created."
     else
-      render 'new' 
+      render 'new'
     end
   end
 
