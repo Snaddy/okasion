@@ -56,5 +56,7 @@ Rails.application.routes.draw do
 
     get 'email/confirmations' => 'confirmations#send_confirmation'
 
+    get 'confimed' => 'pages#confirmed', as: 'confirmed'
+
   end
 end

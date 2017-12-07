@@ -86,7 +86,7 @@ require 'will_paginate/array'
       if @event.update(event_params)
         redirect_to event_path(@event.id)
         flash[:notice] = "Changes saved successfully."
-      else
+      elsehero
         render 'edit'
       end
     end

@@ -17,4 +17,8 @@ class PagesController < ApplicationController
 		render 'pages/terms'
 	end
 
+	def confirmed
+		render 'pages/confirmed'
+	end
+
 end
