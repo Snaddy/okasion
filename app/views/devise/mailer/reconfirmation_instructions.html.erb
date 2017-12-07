@@ -7,7 +7,7 @@
 
 <p>You can confirm your account through the link below:</p>
 
-<%= link_to confirmation_url(@resource, confirmation_token: @token) do %>
+<%= link_to confirmation_url(@user, confirmation_token: @token) do %>
 	<div style="height: 38px; padding: 5px; color:'white'; background-color:'#90bbd1'; text-decoration:'none'">Confirm my account</div>
 <% end %>
 
