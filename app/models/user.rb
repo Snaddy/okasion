@@ -34,5 +34,4 @@ class User < ActiveRecord::Base
     user.skip_confirmation!
     user.confirmed_at = DateTime.now
   end
-  
 end
