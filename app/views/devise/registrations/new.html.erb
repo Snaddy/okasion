@@ -6,11 +6,11 @@
  <div id="error_explanation">
         <div class="alert alert-danger">
         <ul>
-            <% if resource.errors[:email].any? %>
-              <li><%= resource.errors[:email].join %></li>
-            <% end %>
             <% if resource.errors[:name].any? %>
               <li><%= resource.errors[:name].join %></li>
+            <% end %>
+            <% if resource.errors[:email].any? %>
+              <li><%= resource.errors[:email].join %></li>
             <% end %>
             <% if resource.errors[:password].any? %>
               <li><%= resource.errors[:password].join %></li>
@@ -22,14 +22,13 @@
      </div>
   </div>
 <% end %>
-
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
-  </div>
-
   <div class="field">
     <%= f.text_field :name, placeholder: 'Name'%>
-  </div>  
+  </div> 
+
+    <div class="field">
+    <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
+  </div> 
 
   <div class="field">
     <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
