@@ -12,8 +12,8 @@ class ConfirmationsController < Devise::ConfirmationsController
 	private
 
 	def after_confirmation_path_for(resource_name, resource)
-		redirect_to root_path
 		flash[:notice] = 'Thanks for confirming your email!'
+		redirect_to root_path
 	end
 
 end
