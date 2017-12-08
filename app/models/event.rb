@@ -13,10 +13,10 @@ class Event < ActiveRecord::Base
 	attr_accessor :hour, :minute, :meridiem, :endhour, :endminute, :endmeridiem
 
 	validates_presence_of :title, :description, :address, :category, :time, :cover_image
-	validates_length_of :title, maximum: 50
+	validates_length_of :title, maximum: 75
 	validates_length_of :description, maximum: 1000
 	validates_length_of :address, maximum: 100
-	validates_length_of :url, maximum: 1000
+	validates_length_of :url, maximum: 500
 	validates :endtime, presence: true, allow_blank: true
 	validates :enddate, presence: true, allow_blank: true
   validates :date, presence: true, allow_blank: true

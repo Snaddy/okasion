@@ -45,10 +45,15 @@ en:
             attributes:
               title: 
                 blank: "Please enter a title"
+                too_long: "Title can't be longer than 75 characters"
               description:
                 blank: "Please enter a description"
+                too_long: "Description can't be longer than 1000 characters"
               address:
                 blank: "Please enter an address"
+                too_long: "Address can't be longer than 100 characters"
               cover_image:
                 blank: "Please upload a cover image"
+              url:
+                too_long:too_long: "Website can't be longer than 500 characters"
     
