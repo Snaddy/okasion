@@ -111,7 +111,7 @@ class Event < ActiveRecord::Base
           start_date = start
           end_date = start 
           schedule(start_date).occurrences(end_date).map do |date|
-              Event.new(id: id, title: cover_image, cover_image: cover_image)
+              self
           end
       end
     end
