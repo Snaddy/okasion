@@ -1,6 +1,6 @@
 class ConfirmationsController < Devise::ConfirmationsController
 
-	before_action :authenticate_user!
+	before_action :authenticate_user!, only: [:send_confirmation]
 
 	def send_confirmation
 		@user = current_user
@@ -11,7 +11,7 @@ class ConfirmationsController < Devise::ConfirmationsController
 
 	protected
 
-	def after_confirmation_path_for
+	def after_confirmation_path_for(resource, resourec_name)
 		confirmed_path
   	end
 
