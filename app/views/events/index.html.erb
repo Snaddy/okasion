@@ -52,7 +52,7 @@
 		<% if @events.count == 0 %>
 			<% if @date || params[:with_category]%>
 			<div class="no-results">
-				0 results <%= 'for' + @date.strftime("%B, %-d, %Y") unless @date.blank? %>
+				0 results <%= ' for' + @date.strftime("%B, %-d, %Y") unless @date.blank? %>
 				<%= 'in ' + params[:with_category] unless params[:with_category].blank? %>  
 			</div>
 			<% else %>
