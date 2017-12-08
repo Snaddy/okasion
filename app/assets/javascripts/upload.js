@@ -19,6 +19,16 @@ function readURL(input) {
         var reader = new FileReader();
         reader.onload = function (e) {
           $('#image').html("<img src=\"" + e.target.result + "\">");  
+          var css;
+          var img_ratio = $("#image img").width() / $("#image img").height();
+          var container_ratio = $(".cover-image-container").width() / $(".cover-image-container").height();
+          if (img_ratio < container_ratio) { 
+            css = { width:'auto', height:'100%' };
+          }
+          else {
+            css = { width:'100%', height:'auto' };
+          }
+          $("#image img").css(css);
         }
         reader.readAsDataURL(input.files[0]);
     $('.cover-image-text').remove();
