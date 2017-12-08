@@ -2,14 +2,6 @@ class Event < ActiveRecord::Base
 
 	serialize :recurring, Hash 
 
-    def recurring=(value)
-        if RecurringSelect.is_valid_rule?(value)
-            super(RecurringSelect.dirty_hash_to_rule(value).to_hash)
-        else
-            super(nil)
-        end
-    end
-
 	attr_accessor :hour, :minute, :meridiem, :endhour, :endminute, :endmeridiem
 
 	validates_presence_of :title, :description, :address, :category, :time, :cover_image
@@ -33,6 +25,14 @@ class Event < ActiveRecord::Base
    :date_is_present, :smart_add_url_protocol, :valid_time
 
 	mount_uploader :cover_image, CoverImageUploader
+
+  def recurring=(value)
+    if RecurringSelect.is_valid_rule?(value)
+        super(RecurringSelect.dirty_hash_to_rule(value).to_hash)
+    else
+        super(nil)
+    end
+  end
 
 	def parse_time
     	if hour and minute and meridiem
@@ -111,12 +111,9 @@ class Event < ActiveRecord::Base
           start_date = start
           end_date = start 
           schedule(start_date).occurrences(end_date).map do |date|
-              Event.new(id: id, title: title, cover_image: cover_image)
+              Event.new(id: id, title: cover_image, cover_image: cover_image.to_s)
           end
       end
     end
-    
-    # scopes for filters
-    # scope :choose_date, -> (date) { where("date = ?", date)}
-    # scope :with_category, -> (category) { where("category = ?", category) }
+
 end
