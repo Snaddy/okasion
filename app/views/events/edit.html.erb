@@ -29,18 +29,18 @@
 
 <% if @event.cover_image? %>
   <div class="cover-image-container">
-      <span id="image"></span>
-       <div class="cover-image-text"> 
-      <span class="fa fa-photo"></span>
-      Add a cover image <br><span>(750 x 375 for optimal dimensions)</span></div>
+      <span id="image">
+          <img src="<%= @event.cover_image.to_s %>"/>
+      </span>
   </div>
 <% else %>
 
  <div class="cover-image-container">
       <span id="image"></span>
+       <div class="cover-image-text"> 
       <span class="fa fa-photo"></span>
-      <div class="cover-image-text"> Add a cover image</div>
-</div>
+      Add a cover image <br><span>(750 x 375 for optimal dimensions)</span></div>
+  </div>
 
 <% end %>
 
