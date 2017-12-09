@@ -18,7 +18,7 @@ require 'will_paginate/array'
         @events = @events.flat_map{ |e| e.calender(@date) }
       else
         @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
-            Date.today, Date.today, Date.today, Date.today).near(@city, 100)
+            Time.now, Time.now, Time.now, Time.now).near(@city, 100)
         @events = @events.flat_map{ |e| e.calender(Time.now.to_date) }
       end
       @events = @events.select{|event| event.category == params[:with_category]} unless params[:with_category].blank?
@@ -35,7 +35,7 @@ require 'will_paginate/array'
         @events = @events.flat_map{ |e| e.calender(@date) }
       else
         @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
-            Date.today, Date.today, Date.today, Date.today).near(@city, 100)
+            Time.now, Time.now, Time.now, Time.now).near(@city, 100)
         @events = @events.flat_map{ |e| e.calender(Time.now.to_date) }
       end
       @events = @events.select{|event| event.category == params[:with_category]} unless params[:with_category].blank?
