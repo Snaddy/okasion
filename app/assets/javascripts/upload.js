@@ -19,19 +19,6 @@ function readURL(input) {
         var reader = new FileReader();
         reader.onload = function (e) {
           $('#image').html("<img src=\"" + e.target.result + "\">");  
-            var css;
-            var img_width = $("#image img").width();
-            var img_height = $("#image img").height();
-            var con_width = $(".cover-image-container").width();
-            var con_height = $(".cover-image-container").height();
-            var img_ratio = img_width / img_height
-            var container_ratio = con_width / con_height;
-            if (img_ratio < container_ratio) { 
-              css = { width:'auto', height:'100%' };
-            } else {
-              css = { width:'100%', height:'auto' };
-            }
-            $("#image img").css(css);
         }
         reader.readAsDataURL(input.files[0]);
     $('.cover-image-container').css("border", "none");
@@ -40,6 +27,7 @@ function readURL(input) {
     }
   }
 }
+
 var preview = function(){
   $("#upload").change(function(){
     readURL(this);
