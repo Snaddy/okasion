@@ -1,7 +1,4 @@
 source 'https://rubygems.org'
-
-#time zones
-gem 'browser-timezone-rails'
 #sendgrid
 gem 'sendgrid-ruby'
 #filter queries
