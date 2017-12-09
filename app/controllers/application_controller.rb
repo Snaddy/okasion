@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_timezone  
-    min = cookies['time_zone'].to_i
+    min = cookies[:time_zone].to_i
     Time.zone = ActiveSupport::TimeZone[-min.minutes]
   end 
 
