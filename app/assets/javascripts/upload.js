@@ -1,4 +1,6 @@
-function readURL(input) {
+function readURL(file) {
+    var img = new Image();
+    var reader = new FileReader();
     var fileName = $('#upload').val();
     var ext = fileName.split('.').pop();
     if($.inArray(ext, ['png','jpg','jpeg', 'PNG','JPG','JPEG']) == -1) {
@@ -7,7 +9,7 @@ function readURL(input) {
         "<div class='alert alert-danger'>Please upload an image (.png or .jpg)</div>"
         );
       $('.image-error').show("fast");
-    } else if (input.files[0].size > 5242880 ) {
+    } else if (file > 5242880 ) {
       $('.image-error').empty();
       $('.image-error').append(
         "<div class='alert alert-danger'>Cover image can't be larger than 5MB</div>"
@@ -15,31 +17,31 @@ function readURL(input) {
       $('.image-error').show("fast");
     } else {
       $('.image-error').hide("fast");
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
+    if (file) {
         reader.onload = function (e) {
-          $('#image').html("<img src=\"" + e.target.result + "\">");  
+
+          img.onload = function () {
+            $('#image').append('<img src="' + e.target.result + '"/>');
+            $('.cover-image-container').css("height", img.height + "px");
+          };
         }
-        reader.readAsDataURL(input.files[0]);
-    $('.cover-image-container').css("border", "none");
-    $('.cover-image-text').remove();
-    $('.fa.fa-photo').remove();
+        reader.readAsDataURL(file);
+      $('.cover-image-container').css("border", "none");
+      $('.cover-image-text').remove();
+      $('.fa.fa-photo').remove();
     }
   }
 }
 
-var preview = function(){
-  $("#upload").change(function(){
-    readURL(this);
-  })
-  
-  $(document).ready(function() {
-    $('.cover-image-container').click(function(){
-        $('#upload').click();
-    })
-  })
-};
 
-$(document).ready(preview);
-$(document).on('page:load', preview);
+$(document).ready(function() {
+    $("#upload").change(function(){
+      var file = this.files[0];
+      readURL(file);
+    });
+
+  $('.cover-image-container').click(function(){
+      $('#upload').click();
+  })
+});
  

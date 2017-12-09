@@ -20,3 +20,4 @@
 //= require notifications.js
 //= require pagination.js 
 //= require scroll.js
+//= require load.js
