@@ -31,6 +31,7 @@ function readURL(input) {
           $("#image img").css(css);
         }
         reader.readAsDataURL(input.files[0]);
+    $('.cover-image-container').css("border", "none");
     $('.cover-image-text').remove();
     $('.fa.fa-photo').remove();
     }
