@@ -1,7 +1,7 @@
 function readURL(input) {
     var fileName = $('#upload').val();
     var ext = fileName.split('.').pop();
-    if($.inArray(ext, ['png','jpg','jpeg']) == -1) {
+    if($.inArray(ext, ['png','jpg','jpeg', 'PNG','JPG','JPEG']) == -1) {
       $('.image-error').empty();
       $('.image-error').append(
         "<div class='alert alert-danger'>Please upload an image (.png or .jpg)</div>"
@@ -23,10 +23,9 @@ function readURL(input) {
           var img_ratio = $("#image img").width() / $("#image img").height();
           var container_ratio = $(".cover-image-container").width() / $(".cover-image-container").height();
           if (img_ratio < container_ratio) { 
-            css = { width:'auto', height:'100%' };
-          }
-          else {
             css = { width:'100%', height:'auto' };
+          } else {
+            css = { width:'auto', height:'100%' };
           }
           $("#image img").css(css);
         }
