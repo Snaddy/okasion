@@ -12,7 +12,6 @@
 	border: solid 1px #dddddd;
 	margin-bottom: 10px;
 	text-align:center;
-	line-height: 250px;
 	font-size: 30px;
 	color: #656565;
 }
@@ -22,7 +21,17 @@
 }
 
 .cover-image-text{
-	display:inline;
+	position: relative;
+	margin-top: -45px;
+	top: 50%;
+
+	.fa-photo{
+		font-size: 26px;
+	}
+
+	span {
+		font-size: 18px;
+	}
 }
 
 #image{
