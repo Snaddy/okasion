@@ -60,6 +60,11 @@
 				<strong>Days: </strong><%= IceCube::Rule.from_hash(@event.recurring) %>
 
 				<div>
+				<% if @event.date? && @event.enddate? %>
+					<strong>Dates: </strong><%= @event.date.strftime("%B, %-d, %Y") %> - <%= @event.enddate.strftime("%B, %-d, %Y") %>
+				<% else %>
+
+				<div>
 				<% if @event.date? %>
 					<strong>Starts: </strong><%= @event.date.strftime("%B, %-d, %Y") %>
 				<% end %>
@@ -68,6 +73,9 @@
 				<div>
 				<% if @event.enddate? %>
 					<strong>Ends: </strong><%= @event.enddate.strftime("%B, %-d, %Y") %>
+				<% end %>
+				</div>
+
 				<% end %>
 				</div>
 			<% end %>
