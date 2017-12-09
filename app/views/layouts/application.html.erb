@@ -76,11 +76,24 @@
 <div class="scroll-top-val"></div>
 
 <script type="text/javascript">
-  function set_time_zone_offset() {
-      var current_time = new Date();
-      document.cookie('time_zone', current_time.getTimezoneOffset());
-  }
+  function createCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
 </script>
+
+<script type="text/javascript">
+  var date = new Date();
+  var value = date.getTimezoneOffset();
+
+  createCookie('time_zone',value, 100);
+</script>
+
 </body>
 </html>
 
