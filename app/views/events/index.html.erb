@@ -23,7 +23,7 @@
         <%= hidden_field_tag :search, params[:search] %>
         <div class="form-field">
 			<%= label :date, 'Date' %><br>
-	        <%= date_select :date_filter, '' , start_year: Time.now.year, end_year: Time.now.year + 5, prompt: true %>
+	        <%= date_select :date_filter, '' , start_year: Date.current.year, end_year: Date.current.year + 5, prompt: true %>
 		</div>
 
           <div class="form-field">

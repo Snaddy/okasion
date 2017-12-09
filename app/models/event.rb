@@ -56,7 +56,7 @@ class Event < ActiveRecord::Base
 
   	def valid_date
      if date
-  		if self.date < Date.today
+  		if self.date < Date.current
   			self.errors.add(:date, "Date is in the past")
   		end
     end

@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
       user.name = auth.info.name
     	user.password = Devise.friendly_token[0,20]
     	user.skip_confirmation!
-      user.confirmed_at = DateTime.now
+      user.confirmed_at = DateTime.current
     end
   end
 
@@ -32,6 +32,6 @@ class User < ActiveRecord::Base
      end
     user
     user.skip_confirmation!
-    user.confirmed_at = DateTime.now
+    user.confirmed_at = DateTime.current
   end
 end
