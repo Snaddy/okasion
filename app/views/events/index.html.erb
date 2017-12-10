@@ -39,6 +39,40 @@
 </div>
 
 	<div class="feed">
+		<div class="results">
+		<% if @events.count == 0 %>
+			<% if @date || params[:with_category]%>
+				0 events
+				<% if @date %> 
+				<%= ' happening ' + @date.strftime("%B, %-d, %Y") %>
+				<%= 'in ' + params[:with_category] unless params[:with_category].blank? %>
+				<% else %>
+				happening
+				<%= 'in ' + params[:with_category] unless params[:with_category].blank? %>  
+				today
+				<% end %>
+			<% else %>
+				No events found
+			<% end %>
+		<% else %>
+			<%= number_with_delimiter(@events.count) %>
+			<% if @events.count > 1 %>
+				events
+			<% else %>
+				event
+			<% end %>
+
+			<% if @date %> 
+			<%= ' happening ' + @date.strftime("%B, %-d, %Y") %>
+			<%= 'in ' + params[:with_category] unless params[:with_category].blank? %>
+			<% else %>
+			happening
+			<%= 'in ' + params[:with_category] unless params[:with_category].blank? %>
+			today  
+			<% end %>
+		<% end %>
+		</div>
+
 		<div class="events">
 			<%= render @events %>
 		</div>
@@ -47,19 +81,6 @@
 		</div>
 		<% if @events.next_page %>
 			<div id="load-more-posts" class="btn btn-primary"> Load more posts</div>
-		<% end %>
-
-		<% if @events.count == 0 %>
-			<% if @date || params[:with_category]%>
-			<div class="no-results">
-				0 results <%= ' for ' + @date.strftime("%B, %-d, %Y") unless @date.blank? %>
-				<%= 'in ' + params[:with_category] unless params[:with_category].blank? %>  
-			</div>
-			<% else %>
-			<div class="no-results">
-				No events found
-			</div>
-			<% end %>
 		<% end %>
 	</div>
 </div>
