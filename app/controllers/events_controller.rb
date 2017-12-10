@@ -22,6 +22,11 @@ require 'will_paginate/array'
               Date.current, Date.current, Date.current, Date.current).near(@city, 100)
           @events = @events.flat_map{ |e| e.calender(Date.current) }
         end
+       else
+        @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+            Date.current, Date.current, Date.current, Date.current).near(@city, 100)
+        @events = @events.flat_map{ |e| e.calender(Date.current) }
+      end
     else
       @city = current_user.city
       #filter events  
@@ -116,4 +121,5 @@ require 'will_paginate/array'
       :address, :hour, :minute, :meridiem,
       :endhour, :endminute, :endmeridiem, :recurring)
   end
+
 end
