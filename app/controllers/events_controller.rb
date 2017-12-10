@@ -37,7 +37,7 @@ require 'will_paginate/array'
         @events = @events.flat_map{ |e| e.calender(Date.current) }
       end
     end
-    @events = @events.where{"category = ?", params[:with_category]} unless params[:with_category].blank?
+    @events = @events.where("category = ?", params[:with_category]) unless params[:with_category].blank?
     #paginate results
     @events = @events.paginate(page: params[:page], per_page: 10)
   end
