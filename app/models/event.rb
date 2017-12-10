@@ -55,7 +55,7 @@ class Event < ActiveRecord::Base
   	end
 
   	def valid_date
-  		if enddate
+  		if enddate && date
   			if self.enddate < self.date
   				self.errors.add(:enddate, "End date is before start date")
   			end
