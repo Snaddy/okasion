@@ -104,13 +104,13 @@
 
 <div class="nearby-title">Nearby events happening today</div>
 
-<% if @event.nearbys(10).where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+<% if @event.nearbys(20).where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
         Date.current, Date.current, Date.current, Date.current).limit(5).flat_map{ |e| e.calender(params.fetch(:date, Time.current).to_date) }.empty? %>
 
 <div class='no-events'>No events happening today :(</div>
 
 <% else %>
-	<% for event in @event.nearbys(10).where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+	<% for event in @event.nearbys(20).where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
         Date.current, Date.current, Date.current, Date.current).limit(5).flat_map{ |e| e.calender(params.fetch(:date, Time.current).to_date) } %>
 		<%= div_for event, :class => "nearby-event-items" do %>
 			<%= link_to event_path(event.id) do %>
