@@ -21,6 +21,9 @@ require 'will_paginate/array'
             Date.current, Date.current, Date.current, Date.current).near(@city, 100)
         @events = @events.flat_map{ |e| e.calender(Date.current) }
       end
+      if params[:with_category]
+        @events = @events.select{|event| event.category == params[:with_category]}
+      end
     else
       @city = current_user.city
       #filter events  
@@ -35,9 +38,12 @@ require 'will_paginate/array'
         @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
             Date.current, Date.current, Date.current, Date.current).near(@city, 100)
         @events = @events.flat_map{ |e| e.calender(Date.current) }
+        
+      end
+      if params[:with_category]
+        @events = @events.select{|event| event.category == params[:with_category]}
       end
     end
-    @events = @events.where("category = ?", params[:with_category]) unless params[:with_category].blank?
     #paginate results
     @events = @events.paginate(page: params[:page], per_page: 10)
   end
