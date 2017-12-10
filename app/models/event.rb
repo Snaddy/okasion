@@ -55,12 +55,6 @@ class Event < ActiveRecord::Base
   	end
 
   	def valid_date
-     if date
-  		if self.date < Date.current
-  			self.errors.add(:date, "Date is in the past")
-  		end
-    end
-
   		if enddate
   			if self.enddate < self.date
   				self.errors.add(:enddate, "End date is before start date")
