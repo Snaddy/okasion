@@ -1,6 +1,6 @@
 <% if flash.now[:alert] %>
 <div class="messages-confirm">
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible">
     	<%= flash[:alert] %> 
     	<%= link_to 'Send confirmation email', send_reconfirmation_path(current_user) %>
     </div>

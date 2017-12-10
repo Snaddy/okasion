@@ -19,18 +19,14 @@ function readURL(file) {
       $('.image-error').hide("fast");
     if (file) {
         reader.onload = function (e) {
-
-          img.onload = function () {
-            $('#image').append('<img src="' + e.target.result + '"/>');
-            $('.cover-image-container').css("height", img.height + "px");
-          };
-        }
-        reader.readAsDataURL(file);
+            $('#image').html('<img src="' + e.target.result + '"/>');
+        };
+    }
+      reader.readAsDataURL(file);
       $('.cover-image-container').css("border", "none");
       $('.cover-image-text').remove();
       $('.fa.fa-photo').remove();
     }
-  }
 }
 
 
