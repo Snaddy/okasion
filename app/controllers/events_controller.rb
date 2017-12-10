@@ -10,7 +10,7 @@ require 'will_paginate/array'
       @city = params[:search]
       #filter events  
       @events = Event.near(@city, 100)
-      if params[:date_filter]
+      if params[:date_filter].present?
         date_filter = params[:date_filter]
         @date = Date.new date_filter["(1i)"].to_i, date_filter["(2i)"].to_i, date_filter["(3i)"].to_i rescue nil
         @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
@@ -25,7 +25,7 @@ require 'will_paginate/array'
       @city = current_user.city
       #filter events  
       @events = Event.near(@city, 100)
-      if params[:date_filter]
+      if params[:date_filter].present?
         date_filter = params[:date_filter]
         @date = Date.new date_filter["(1i)"].to_i, date_filter["(2i)"].to_i, date_filter["(3i)"].to_i rescue nil
         @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 

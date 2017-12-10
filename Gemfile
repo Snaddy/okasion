@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+
+gem 'bullet', group: :development
 #sendgrid
 gem 'sendgrid-ruby'
 #filter queries

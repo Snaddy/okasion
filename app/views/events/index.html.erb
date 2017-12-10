@@ -19,7 +19,7 @@
 
 <div class="search-filters">
 <div class="filter-fields">
-	<%= form_tag '/events', :method => :get do %>
+	<%= form_tag events_path, :method => :get do %>
         <%= hidden_field_tag :search, params[:search] %>
         <div class="form-field">
 			<%= label :date, 'Date' %><br>
