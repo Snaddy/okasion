@@ -28,7 +28,7 @@
 
           <div class="form-field">
 			  <%= label :Category, 'Category' %><br>
-			  <%= select_tag :with_category, options_for_select(['Activities & Attractions', 'Art', 'Bars, Pubs & Clubs', 'Educational', 'Entertainment', 'Family', 'Fitness', 'Food & Drinks', 'Fundraising', 'Music', 'Outdoor Recreation', 'Religious','Shopping', 'Sports', 'Tours', 'Other']) , :prompt => "All categories" %>
+			  <%= select_tag :with_category, options_for_select(['Activities & Attractions', 'Art', 'Bars, Pubs & Clubs', 'Educational', 'Entertainment', 'Family', 'Fitness', 'Food & Drinks', 'Fundraising', 'Music', 'Outdoor Recreation', 'Religious','Shopping', 'Sports', 'Tours', 'Other'], params[:with_category]), :prompt => "All categories" %>
 		  </div>
             
             <div class="actions">
