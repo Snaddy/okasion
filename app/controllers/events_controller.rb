@@ -11,34 +11,30 @@ require 'will_paginate/array'
       #filter events  
       @events = Event.near(@city, 100)
       if params[:date_filter]
-        begin
-          date_filter = params[:date_filter]
-          @date = Date.new date_filter["(1i)"].to_i, date_filter["(2i)"].to_i, date_filter["(3i)"].to_i rescue nil
-          @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
-              @date, @date, @date, @date)
-          @events = @events.flat_map{ |e| e.calender(@date) }
-        rescue ArgumentError
-          @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
-              Date.current, Date.current, Date.current, Date.current).near(@city, 100)
-          @events = @events.flat_map{ |e| e.calender(Date.current) }
-        end
+        date_filter = params[:date_filter]
+        @date = Date.new date_filter["(1i)"].to_i, date_filter["(2i)"].to_i, date_filter["(3i)"].to_i
+        @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+            @date, @date, @date, @date)
+        @events = @events.flat_map{ |e| e.calender(@date) }
+      else
+        @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+            Date.current, Date.current, Date.current, Date.current).near(@city, 100)
+        @events = @events.flat_map{ |e| e.calender(Date.current) }
       end
     else
       @city = current_user.city
       #filter events  
       @events = Event.near(@city, 100)
       if params[:date_filter]
-        begin
-          date_filter = params[:date_filter]
-          @date = Date.new date_filter["(1i)"].to_i, date_filter["(2i)"].to_i, date_filter["(3i)"].to_i rescue nil
-          @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
-              @date, @date, @date, @date)
-          @events = @events.flat_map{ |e| e.calender(@date) }
-        rescue ArgumentError
-          @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
-              Date.current, Date.current, Date.current, Date.current).near(@city, 100)
-          @events = @events.flat_map{ |e| e.calender(Date.current) }
-        end
+        date_filter = params[:date_filter]
+        @date = Date.new date_filter["(1i)"].to_i, date_filter["(2i)"].to_i, date_filter["(3i)"].to_i
+        @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+            @date, @date, @date, @date)
+        @events = @events.flat_map{ |e| e.calender(@date) }
+      else
+        @events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
+            Date.current, Date.current, Date.current, Date.current).near(@city, 100)
+        @events = @events.flat_map{ |e| e.calender(Date.current) }
       end
     end
     @events = @events.select{|event| event.category == params[:with_category]} unless params[:with_category].blank?
