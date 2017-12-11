@@ -1,9 +1,9 @@
 class Api::V1::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_before_action :verify_authenticity_token
+  
 
   def facebook
     # You need to implement the method below in your model (e.g. app/models/user.rb)
-    @user = User.from_omniauth(:access_token)
+    @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
