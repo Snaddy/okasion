@@ -23,7 +23,4 @@ class Api::V1::SessionsController < Devise::SessionsController
       render json: { status: "sucecss" }
     end
 
-    def authenicate
-    end
-    
 end
