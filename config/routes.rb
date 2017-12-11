@@ -66,7 +66,7 @@ Rails.application.routes.draw do
       #posts
       post 'registrations' => 'registrations#create'
       post 'sessions' => 'sessions#create'
-      post 'facebook/login' => 'omniauth_callbacks#facebook'
+      post ':provider/login' => 'omniauth_callbacks#facebook'
       #puts
       put 'update' => 'registrations#update'
       #deletes
