@@ -58,4 +58,20 @@ Rails.application.routes.draw do
     get 'email/confirmations' => 'confirmations#send_confirmation'
 
   end
+
+  namespace :api, defaults: { format: :json } do
+  namespace :v1 do
+    resources :posts
+    devise_scope :user do
+      #posts
+      post 'registrations' => 'registrations#create'
+      post 'sessions' => 'sessions#create'
+      post 'facebook/login' => 'omniauth_callbacks#facebook'
+      #puts
+      put 'update' => 'registrations#update'
+      #deletes
+      delete 'sessions' => 'sessions#destroy'
+    end
+  end
+  end
 end
