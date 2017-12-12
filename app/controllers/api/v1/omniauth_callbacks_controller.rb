@@ -1,11 +1,15 @@
 class Api::V1::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+
   skip_before_action :verify_authenticity_token
 
   def facebook
     # You need to implement the method below in your model (e.g. app/models/user.rb)
     @graph = Koala::Facebook::API.new(request.headers['OAuth'])
       auth = Hash.new
-      auth = @graph.get_object("me")
+      auth[:provider] = 'facebook'
+      auth[:uid] = request.headers['Uid']
+      auth[:email] = @graph.get_object("me", fields: 'email')
+      auth[:name] = @graph.get_object("me", fields: 'name')
 
     @user = User.from_omniauth(auth)
 
@@ -13,8 +17,7 @@ class Api::V1::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_session_url, alert: @user.errors.full_messages.join("\n")
+      render json: @user.errors.full_messages.join("\n")
     end
   end
 
