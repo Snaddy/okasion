@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#token for api
+gem 'simple_token_authentication', '~> 1.0'
 #facebook graph api
 gem 'koala'
 #destroyer of n+1 queries
