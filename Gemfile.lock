@@ -45,6 +45,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     arel (6.0.4)
     autoprefixer-rails (7.2.1)
       execjs
@@ -118,6 +120,10 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.6)
     jwt (1.5.6)
+    koala (3.0.0)
+      addressable
+      faraday
+      json (>= 1.8)
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -157,6 +163,7 @@ GEM
     orm_adapter (0.5.0)
     pg (0.21.0)
     popper_js (1.12.5)
+    public_suffix (3.0.1)
     rack (1.6.8)
     rack-protection (1.5.3)
       rack
@@ -273,6 +280,7 @@ DEPENDENCIES
   ice_cube
   jbuilder (~> 2.0)
   jquery-rails
+  koala
   mini_magick
   omniauth
   omniauth-facebook

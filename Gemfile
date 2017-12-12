@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#facebook graph api
+gem 'koala'
+#destroyer of n+1 queries
 gem 'bullet', group: :development
 #sendgrid
 gem 'sendgrid-ruby'
