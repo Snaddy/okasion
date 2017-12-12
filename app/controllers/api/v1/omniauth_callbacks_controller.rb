@@ -15,9 +15,9 @@ class Api::V1::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
-      render json: { status: "success"}
+      render json: { status: "success" }
     else
-      render json: { @user.errors.full_messages.join("\n") }
+      render json: { status: @user.errors.full_messages.join("\n") }
     end
   end
 
@@ -36,4 +36,5 @@ class Api::V1::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def failure
     redirect_to root_path
   end
+
 end
