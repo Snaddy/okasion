@@ -11,8 +11,6 @@ class Api::V1::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       auth[:email] = @graph.get_object("me", fields: 'email')
       auth[:name] = @graph.get_object("me", fields: 'name')
 
-      puts auth
-
     @user = User.from_omniauth_api(auth)
 
     if @user.persisted?
