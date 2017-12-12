@@ -8,8 +8,11 @@ class Api::V1::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       auth = Hash.new
       auth[:provider] = 'facebook'
       auth[:uid] = request.headers['Uid']
-      auth[:email] = @graph.get_object("me", fields: 'email')
-      auth[:name] = @graph.get_object("me", fields: 'name')
+      auth[:info] = Hash.new
+      auth[:info][:email] = @graph.get_object("me", fields: 'email')
+      auth[:info][:name] = @graph.get_object("me", fields: 'name')
+
+      puts auth
 
     @user = User.from_omniauth(auth)
 

@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   validates_acceptance_of :accept, allow_nil:true, on: :create, message: 'You must agree to the Privacy Policy and Terms of Service before signin up'
 
   def self.from_omniauth(auth)
+    puts auth
   	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
     	user.email = auth.info.email
       user.name = auth.info.name
