@@ -2,17 +2,19 @@ class Api::V1::SessionsController < Devise::SessionsController
     skip_before_action :verify_signed_out_user, only: [:destroy]
 
     def create
-      user = warden.authenticate!(params[:user])
-      sign_in(resource_name, user)
-
-      if current_user.save
-            render json: {
-              status: "success",
-              email: current_user.email,
-              auth_token: current_user.authentication_token
-            }
-      else
-        render json: { status: user.errors.full_messages }
+      @user = User.find_by(email: params[:email])
+      
+      if @user.valid_password?(params[:password])
+        sign_in(@user)
+        if current_user.save
+              render json: {
+                status: "success",
+                email: current_user.email,
+                auth_token: current_user.authentication_token
+              }
+        else
+          render json: { status: user.errors.full_messages }
+        end
       end
     end
 
@@ -21,5 +23,4 @@ class Api::V1::SessionsController < Devise::SessionsController
       current_user.update_column(:authentication_token, nil)
       render json: { status: "sucecss" }
     end
-
 end

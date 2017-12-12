@@ -64,8 +64,8 @@ Rails.application.routes.draw do
     resources :posts
     devise_scope :user do
       #posts
-      post 'registrations' => 'registrations#create'
-      post 'sessions' => 'sessions#create'
+      post 'register' => 'registrations#create'
+      post 'login' => 'sessions#create'
       post 'facebook/login' => 'omniauth_callbacks#facebook'
       #puts
       put 'update' => 'registrations#update'
