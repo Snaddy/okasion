@@ -16,7 +16,7 @@ class Api::V1::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth_api(auth)
 
     if @user.persisted?
-      sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
+      sign_in(@user)#this will throw if @user is not activated
       render json: { status: "success" }
     else
       render json: { status: @user.errors.full_messages.join("\n") }
