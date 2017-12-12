@@ -9,7 +9,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
           email: current_user.email,
         }
       else
-        render json: { status: user.errors.full_messages }
+        render json: { status: @user.errors.full_messages }
       end
     end
 
