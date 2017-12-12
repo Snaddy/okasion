@@ -22,6 +22,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.from_omniauth_api(auth = {})
+    puts auth
+    where(provider: auth["provider"], uid: auth["uid"]).first_or_create do |user|
+      user.email = auth["email"]
+      user.name = auth["name"]
+      user.password = Devise.friendly_token[0,20]
+      user.skip_confirmation!
+      user.confirmed_at = DateTime.current
+    end
+  end
+
   # def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
   #   data = access_token.info
   #   user = User.where(email: data['email']).first

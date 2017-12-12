@@ -8,13 +8,12 @@ class Api::V1::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       auth = Hash.new
       auth[:provider] = 'facebook'
       auth[:uid] = request.headers['Uid']
-      auth[:info] = Hash.new
-      auth[:info][:email] = @graph.get_object("me", fields: 'email')
-      auth[:info][:name] = @graph.get_object("me", fields: 'name')
+      auth[:email] = @graph.get_object("me", fields: 'email')
+      auth[:name] = @graph.get_object("me", fields: 'name')
 
       puts auth
 
-    @user = User.from_omniauth(auth)
+    @user = User.from_omniauth_api(auth)
 
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
