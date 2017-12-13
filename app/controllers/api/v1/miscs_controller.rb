@@ -1,7 +1,7 @@
 class Api::V1::MiscsController < ActionController::Base
 
 	def email_search
-		if User.exists?(params[:email])
+		if User.exists?(email: params[:email])
 			render json: {
 				status: "true"
 			}
