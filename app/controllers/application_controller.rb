@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def json_request?
+    request.format.json?
+  end
+
   def after_sign_in_path_for(resource)
       if resource.sign_in_count == 1
          add_city_path
