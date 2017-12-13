@@ -33,24 +33,4 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
-  #   data = access_token.info
-  #   user = User.where(email: data['email']).first
-  #   unless user
-  #        user = User.create(name: data['name'],
-  #           email: data['email'],
-  #           password: Devise.friendly_token[0,20])
-
-  #    end
-  #   user
-  #   user.skip_confirmation!
-  #   user.confirmed_at = DateTime.current
-  # end
-
-  private
-
-  def self.email_exists?(email)
-    !!User.exists?(email: email)
-  end
-
 end

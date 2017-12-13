@@ -72,7 +72,7 @@ Rails.application.routes.draw do
       delete 'logout' => 'sessions#destroy'
     end
 
-    get 'email/:email' => 'miscs#email_search'
+    get 'email/:email' => 'miscs#email_search', :constraints => { :email => /.*/ }
 
     get 'events/:today/:city' => 'events#get_events'
 
