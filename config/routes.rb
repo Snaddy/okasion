@@ -72,7 +72,7 @@ Rails.application.routes.draw do
       delete 'sessions' => 'sessions#destroy'
     end
 
-    get 'email/:email_search' => 'misc#email_search'
+    get 'email/:email_search' => 'miscs#email_search'
 
   end
   end
