@@ -74,6 +74,8 @@ Rails.application.routes.draw do
 
     get 'email/:email_search' => 'miscs#email_search'
 
+    get 'events/:today/:city' => 'events#get_events'
+
   end
   end
 end
