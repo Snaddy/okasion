@@ -78,7 +78,7 @@ Rails.application.routes.draw do
 
     get 'event/show/:id' => 'events#show'
 
-    post 'password/reset' => 'miscs#reset_password'
+    post 'password/reset/:email' => 'miscs#reset_password'
 
   end
   end
