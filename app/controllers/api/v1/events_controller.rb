@@ -7,6 +7,16 @@ def get_events
 	@events = Event.where('(date = ? AND enddate IS NULL) OR (date <= ? AND enddate >= ?) OR (date IS NULL AND enddate IS NULL) OR (date IS NULL AND enddate >= ?)', 
 	      @date, @date, @date, @date)
 	@events = @events.flat_map{ |e| e.calender(@date) }
+	render json: {
+		events: @events
+	}
+end
+
+def show
+	@event = Event.find_by(id: param[:id])
+	render json: {
+		event: @event
+	}
 end
 
 def profile
