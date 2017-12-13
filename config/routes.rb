@@ -61,7 +61,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
   namespace :v1 do
-    resources :posts
     devise_scope :user do
       #posts
       post 'register' => 'registrations#create'
@@ -72,6 +71,9 @@ Rails.application.routes.draw do
       #deletes
       delete 'sessions' => 'sessions#destroy'
     end
+
+    get 'email/:email_search' => 'misc#email_search'
+
   end
   end
 end
