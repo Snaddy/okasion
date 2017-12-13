@@ -46,4 +46,11 @@ class User < ActiveRecord::Base
   #   user.skip_confirmation!
   #   user.confirmed_at = DateTime.current
   # end
+
+  private
+
+  def self.email_exists?(email)
+    !!User.exists?(email: email)
+  end
+
 end
