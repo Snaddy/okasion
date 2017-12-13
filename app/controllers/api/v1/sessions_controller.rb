@@ -4,7 +4,6 @@ class Api::V1::SessionsController < Devise::SessionsController
 
     def create
       @user = User.find_by(email: params[:email])
-      
       if @user.valid_password?(params[:password])
         sign_in(@user)
         if current_user.save
@@ -20,8 +19,8 @@ class Api::V1::SessionsController < Devise::SessionsController
     end
 
     def destroy
-      warden.authenticate!(scope: resource_name, recall: "#{controller_path}#failure")
-      current_user.update_column(:authentication_token, nil)
-      render json: { status: "sucecss" }
+      @user = User.find(session[:user_id]).destroy
+      @user.update_column(:authentication_token, nil)
+      render json: { status: "success" }
     end
 end
