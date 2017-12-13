@@ -69,7 +69,7 @@ Rails.application.routes.draw do
       #puts
       put 'update' => 'registrations#update'
       #deletes
-      delete 'sessions' => 'sessions#destroy'
+      delete 'logout' => 'sessions#destroy'
     end
 
     get 'email/:email_search' => 'miscs#email_search'
