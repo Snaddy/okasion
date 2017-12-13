@@ -1,5 +1,6 @@
 class Api::V1::SessionsController < Devise::SessionsController
 
+    skip_before_action :verify_signed_out_user, only: [:destroy]
 
     def create
       @user = User.find_by(email: params[:email])

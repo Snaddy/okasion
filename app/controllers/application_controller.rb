@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_timezone
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
   before_action :set_cache_headers
+  skip_before_action :verify_authenticity_token, if: :json_request?
 
   protected
 
