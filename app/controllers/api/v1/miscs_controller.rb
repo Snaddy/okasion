@@ -7,4 +7,12 @@ class Api::V1::MiscsController < ActionController::Base
 		}
 	end
 
+	def password_reset
+		@user = User.find_by(email: params[:email])
+		if User.exists?(email: params[:email])
+			@user.send_reset_password_instructions
+			render json: {message: 'success'}
+		end
+	end
+
 end
