@@ -76,6 +76,10 @@ Rails.application.routes.draw do
 
     get 'events/:today/:city' => 'events#get_events'
 
+    get 'event/show/:id' => 'events#show'
+
+    post 'password/reset' => 'miscs#reset_password'
+
   end
   end
 end
