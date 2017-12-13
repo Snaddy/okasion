@@ -1,4 +1,4 @@
-class Api::V1::MiscController < ActionController::Base
+class Api::V1::MiscsController < ActionController::Base
 
 	def email_search
 		@result = User.email_exists?(params[:email_search])
@@ -6,5 +6,5 @@ class Api::V1::MiscController < ActionController::Base
 			status: @result
 		}
 	end
-	
+
 end
