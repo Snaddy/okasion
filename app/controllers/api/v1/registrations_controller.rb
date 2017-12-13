@@ -1,9 +1,7 @@
 class Api::V1::RegistrationsController < Devise::RegistrationsController
 
-  skip_before_action :authenticate_user_from_token!
-
     def create
-      @user = User.create(user_params)
+      @user = User.create()
       if @user.save
         sign_in(@user)
         render json: { status: "success",
@@ -27,7 +25,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     private
 
     def user_params
-      params.permit(:name, :email, :password)
+      params.require(:user).permit(:name, :email, :password)
     end
 
 end
