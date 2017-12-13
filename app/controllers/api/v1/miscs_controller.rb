@@ -1,10 +1,15 @@
 class Api::V1::MiscsController < ActionController::Base
 
 	def email_search
-		@result = User.email_exists?(params[:email_search])
-		render json: {
-			status: @result
-		}
+		if User.exists?(params[:email])
+			render json: {
+				status: "true"
+			}
+		else
+			render json: {
+				status: "false"
+			}
+		end
 	end
 
 	def password_reset
