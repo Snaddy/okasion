@@ -1,5 +1,7 @@
 class Api::V1::RegistrationsController < Devise::RegistrationsController
 
+  skip_before_action :verify_authenticity_token
+
     def create
       @user = User.create(user_params)
       if @user.save
