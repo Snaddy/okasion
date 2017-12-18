@@ -17,6 +17,8 @@ class Api::V1::MiscsController < ActionController::Base
 		if User.exists?(email: params[:email])
 			@user.send_reset_password_instructions
 			render json: {status: 'success'}
+		else 
+			render json: {status: 'error'}
 		end
 	end
 
